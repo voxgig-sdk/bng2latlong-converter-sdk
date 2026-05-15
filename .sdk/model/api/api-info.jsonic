@@ -1,0 +1,28 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        name: "GetTheData"
+        url: "https://www.getthedata.com/bng2latlong"
+      }
+      description: "This API converts OSGB36 easting and northing coordinates (British National Grid) into WGS84 latitude and longitude. It can return responses in both JSON and XML formats, making it versatile for different applications."
+      license: {
+        name: "Free to use for any purpose"
+        url: "https://www.getthedata.com/bng2latlong"
+      }
+      servers: [
+        {
+          description: "Production server"
+          url: "https://api.getthedata.com"
+        }
+      ]
+      title: "bng2latlong Converter"
+      version: "1.0.0"
+    }
+  }
+}
+
+}

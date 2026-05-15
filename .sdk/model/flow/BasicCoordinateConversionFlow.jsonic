@@ -1,0 +1,33 @@
+# BasicCoordinateConversionFlow
+
+main: kit: flow: BasicCoordinateConversionFlow:
+{
+  entity: "coordinate_conversion",
+  kind: "basic",
+  name: "BasicCoordinateConversionFlow",
+  step: [
+    {
+      input: {
+        ref: "coordinate_conversion_ref01",
+        srcdatavar: "coordinate_conversion_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        easting: "easting01",
+        id: "coordinate_conversion01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-coordinate_conversion_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicCoordinateConversionFlow"
+}

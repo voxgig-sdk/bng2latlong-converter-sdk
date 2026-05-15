@@ -1,0 +1,133 @@
+# Entity: coordinate_conversion
+
+main: kit: entity: coordinate_conversion: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "easting"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "latitude"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "longitude"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "northing"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "status"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "coordinate_conversion"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: 529090
+                kind: "param"
+                name: "easting"
+                orig: "easting"
+                reqd: true
+                type: "`$INTEGER`"
+              }
+              {
+                example: 179645
+                kind: "param"
+                name: "northing"
+                orig: "northing"
+                reqd: true
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/bng2latlong/{easting}/{northing}"
+          parts: [
+            "bng2latlong"
+            "{easting}"
+            "{northing}"
+          ]
+          select: {
+            exist: [
+              "easting"
+              "northing"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                example: 529090
+                kind: "param"
+                name: "easting"
+                orig: "easting"
+                reqd: true
+                type: "`$INTEGER`"
+              }
+              {
+                example: 179645
+                kind: "param"
+                name: "northing"
+                orig: "northing"
+                reqd: true
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/bng2latlong/{easting}/{northing}/xml"
+          parts: [
+            "bng2latlong"
+            "{easting}"
+            "{northing}"
+            "xml"
+          ]
+          select: {
+            exist: [
+              "easting"
+              "northing"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "bng2latlong"
+      ]
+    ]
+  }
+
+
+
+}

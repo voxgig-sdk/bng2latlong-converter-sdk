@@ -1,0 +1,38 @@
+{
+  "existing": {
+    "coordinate_conversion": {
+      "COORDINATE_CONVERSION00": {
+        "easting": "s32",
+        "latitude": 51,
+        "longitude": 52,
+        "northing": "s35",
+        "status": "s36"
+      },
+      "COORDINATE_CONVERSION01": {
+        "easting": "s64",
+        "latitude": 101,
+        "longitude": 102,
+        "northing": "s67",
+        "status": "s68"
+      },
+      "COORDINATE_CONVERSION02": {
+        "easting": "s96",
+        "latitude": 151,
+        "longitude": 152,
+        "northing": "s99",
+        "status": "s9a"
+      }
+    }
+  },
+  "new": {
+    "coordinate_conversion": {
+      "coordinate_conversion_ref01": {
+        "easting": "sc8",
+        "latitude": 201,
+        "longitude": 202,
+        "northing": "scb",
+        "status": "scc"
+      }
+    }
+  }
+}
