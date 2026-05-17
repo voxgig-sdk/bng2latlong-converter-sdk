@@ -6,21 +6,24 @@
         "latitude": 51,
         "longitude": 52,
         "northing": "s35",
-        "status": "s36"
+        "status": "s36",
+        "id": "COORDINATE_CONVERSION00"
       },
       "COORDINATE_CONVERSION01": {
         "easting": "s64",
         "latitude": 101,
         "longitude": 102,
         "northing": "s67",
-        "status": "s68"
+        "status": "s68",
+        "id": "COORDINATE_CONVERSION01"
       },
       "COORDINATE_CONVERSION02": {
         "easting": "s96",
         "latitude": 151,
         "longitude": 152,
         "northing": "s99",
-        "status": "s9a"
+        "status": "s9a",
+        "id": "COORDINATE_CONVERSION02"
       }
     }
   },

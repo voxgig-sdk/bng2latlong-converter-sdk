@@ -3,7 +3,7 @@ package core
 import (
 	"fmt"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/bng2latlong-converter-sdk/go/utility/struct"
 )
 
 type Bng2latlongConverterSDK struct {

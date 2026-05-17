@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/bng2latlong-converter-sdk"
-	"github.com/voxgig-sdk/bng2latlong-converter-sdk/core"
+	sdk "github.com/voxgig-sdk/bng2latlong-converter-sdk/go"
+	"github.com/voxgig-sdk/bng2latlong-converter-sdk/go/core"
 )
 
 func TestCoordinateConversionDirect(t *testing.T) {

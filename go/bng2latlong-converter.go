@@ -1,10 +1,10 @@
 package voxgigbng2latlongconvertersdk
 
 import (
-	"github.com/voxgig-sdk/bng2latlong-converter-sdk/core"
-	"github.com/voxgig-sdk/bng2latlong-converter-sdk/entity"
-	"github.com/voxgig-sdk/bng2latlong-converter-sdk/feature"
-	_ "github.com/voxgig-sdk/bng2latlong-converter-sdk/utility"
+	"github.com/voxgig-sdk/bng2latlong-converter-sdk/go/core"
+	"github.com/voxgig-sdk/bng2latlong-converter-sdk/go/entity"
+	"github.com/voxgig-sdk/bng2latlong-converter-sdk/go/feature"
+	_ "github.com/voxgig-sdk/bng2latlong-converter-sdk/go/utility"
 )
 
 // Type aliases preserve external API.

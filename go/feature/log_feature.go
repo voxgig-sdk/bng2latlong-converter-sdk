@@ -4,7 +4,7 @@ import (
 	"log/slog"
 	"os"
 
-	"github.com/voxgig-sdk/bng2latlong-converter-sdk/core"
+	"github.com/voxgig-sdk/bng2latlong-converter-sdk/go/core"
 )
 
 type LogFeature struct {

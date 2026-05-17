@@ -3,7 +3,7 @@ package utility
 import (
 	"reflect"
 
-	"github.com/voxgig-sdk/bng2latlong-converter-sdk/core"
+	"github.com/voxgig-sdk/bng2latlong-converter-sdk/go/core"
 )
 
 func featureHookUtil(ctx *core.Context, name string) {

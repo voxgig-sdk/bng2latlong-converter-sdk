@@ -1,6 +1,6 @@
 package utility
 
-import "github.com/voxgig-sdk/bng2latlong-converter-sdk/core"
+import "github.com/voxgig-sdk/bng2latlong-converter-sdk/go/core"
 
 func init() {
 	core.UtilityRegistrar = registerAll

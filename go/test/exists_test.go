@@ -3,7 +3,7 @@ package sdktest
 import (
 	"testing"
 
-	sdk "github.com/voxgig-sdk/bng2latlong-converter-sdk"
+	sdk "github.com/voxgig-sdk/bng2latlong-converter-sdk/go"
 )
 
 func TestExists(t *testing.T) {

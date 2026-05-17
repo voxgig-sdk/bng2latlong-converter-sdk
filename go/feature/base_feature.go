@@ -1,7 +1,7 @@
 package feature
 
 import (
-	"github.com/voxgig-sdk/bng2latlong-converter-sdk/core"
+	"github.com/voxgig-sdk/bng2latlong-converter-sdk/go/core"
 )
 
 type BaseFeature struct {

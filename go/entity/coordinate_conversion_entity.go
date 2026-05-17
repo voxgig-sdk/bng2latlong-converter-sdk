@@ -1,9 +1,9 @@
 package entity
 
 import (
-	"github.com/voxgig-sdk/bng2latlong-converter-sdk/core"
+	"github.com/voxgig-sdk/bng2latlong-converter-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/bng2latlong-converter-sdk/go/utility/struct"
 )
 
 type CoordinateConversionEntity struct {

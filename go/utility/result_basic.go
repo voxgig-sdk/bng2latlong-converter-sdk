@@ -3,7 +3,7 @@ package utility
 import (
 	"fmt"
 
-	"github.com/voxgig-sdk/bng2latlong-converter-sdk/core"
+	"github.com/voxgig-sdk/bng2latlong-converter-sdk/go/core"
 )
 
 func resultBasicUtil(ctx *core.Context) *core.Result {
