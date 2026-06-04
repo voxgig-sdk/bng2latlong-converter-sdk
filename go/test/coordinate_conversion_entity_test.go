@@ -117,7 +117,6 @@ func coordinate_conversionBasicSetup(extra map[string]any) *entityTestSetup {
 		"BNG_LATLONGCONVERTER_TEST_COORDINATE_CONVERSION_ENTID": idmap,
 		"BNG_LATLONGCONVERTER_TEST_LIVE":      "FALSE",
 		"BNG_LATLONGCONVERTER_TEST_EXPLAIN":   "FALSE",
-		"BNG_LATLONGCONVERTER_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["BNG_LATLONGCONVERTER_TEST_COORDINATE_CONVERSION_ENTID"])
@@ -128,7 +127,6 @@ func coordinate_conversionBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["BNG_LATLONGCONVERTER_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
-				"apikey": env["BNG_LATLONGCONVERTER_APIKEY"],
 			},
 			extra,
 		})

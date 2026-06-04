@@ -17,9 +17,7 @@ loading a specific record.
 ```ts
 import { Bng2latlongConverterSDK } from 'bng2latlong-converter'
 
-const client = new Bng2latlongConverterSDK({
-  apikey: process.env.BNG2LATLONG-CONVERTER_APIKEY,
-})
+const client = new Bng2latlongConverterSDK({})
 ```
 
 ### 3. Load a coordinateconversion
@@ -82,7 +80,7 @@ const result = await client.Planet().load({ id: 'test01' })
 You can also use the instance method:
 
 ```ts
-const client = new Bng2latlongConverterSDK({ apikey: '...' })
+const client = new Bng2latlongConverterSDK()
 const testClient = client.tester()
 ```
 
@@ -118,7 +116,6 @@ const logger = {
 }
 
 const client = new Bng2latlongConverterSDK({
-  apikey: '...',
   extend: [logger],
 })
 ```
@@ -129,7 +126,6 @@ Create a `.env.local` file at the project root:
 
 ```
 BNG2LATLONG-CONVERTER_TEST_LIVE=TRUE
-BNG2LATLONG-CONVERTER_APIKEY=<your-key>
 ```
 
 Then run:
@@ -147,7 +143,6 @@ cd ts && npm test
 
 ```ts
 new Bng2latlongConverterSDK(options?: {
-  apikey?: string
   base?: string
   prefix?: string
   suffix?: string
@@ -158,7 +153,6 @@ new Bng2latlongConverterSDK(options?: {
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |

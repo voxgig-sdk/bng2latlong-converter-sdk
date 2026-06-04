@@ -23,12 +23,9 @@ loading a specific record.
 ### 1. Create a client
 
 ```python
-import os
 from bng2latlongconverter_sdk import Bng2latlongConverterSDK
 
-client = Bng2latlongConverterSDK({
-    "apikey": os.environ.get("BNG2LATLONG-CONVERTER_APIKEY"),
-})
+client = Bng2latlongConverterSDK({})
 ```
 
 ### 3. Load a coordinateconversion
@@ -117,7 +114,6 @@ Create a `.env.local` file at the project root:
 
 ```
 BNG2LATLONG-CONVERTER_TEST_LIVE=TRUE
-BNG2LATLONG-CONVERTER_APIKEY=<your-key>
 ```
 
 Then run:
@@ -141,7 +137,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `str` | API key for authentication. |
 | `base` | `str` | Base URL of the API server. |
 | `prefix` | `str` | URL path prefix prepended to all requests. |
 | `suffix` | `str` | URL path suffix appended to all requests. |

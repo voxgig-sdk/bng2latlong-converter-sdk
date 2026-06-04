@@ -82,14 +82,12 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'BNG_LATLONGCONVERTER_TEST_COORDINATE_CONVERSION_ENTID': {},
     'BNG_LATLONGCONVERTER_TEST_LIVE': 'FALSE',
-    'BNG_LATLONGCONVERTER_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.BNG_LATLONGCONVERTER_TEST_LIVE
 
   if (live) {
     const client = new Bng2latlongConverterSDK({
-      apikey: env.BNG_LATLONGCONVERTER_APIKEY,
     })
 
     let idmap: any = env['BNG_LATLONGCONVERTER_TEST_COORDINATE_CONVERSION_ENTID']

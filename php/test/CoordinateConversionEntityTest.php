@@ -85,7 +85,6 @@ function coordinate_conversion_basic_setup($extra)
         "BNG_LATLONGCONVERTER_TEST_COORDINATE_CONVERSION_ENTID" => $idmap,
         "BNG_LATLONGCONVERTER_TEST_LIVE" => "FALSE",
         "BNG_LATLONGCONVERTER_TEST_EXPLAIN" => "FALSE",
-        "BNG_LATLONGCONVERTER_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -97,7 +96,6 @@ function coordinate_conversion_basic_setup($extra)
     if ($env["BNG_LATLONGCONVERTER_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["BNG_LATLONGCONVERTER_APIKEY"],
             ],
             $extra ?? [],
         ]);

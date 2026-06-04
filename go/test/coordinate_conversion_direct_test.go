@@ -115,14 +115,12 @@ func coordinate_conversionDirectSetup(mockres any) *coordinate_conversionDirectS
 	env := envOverride(map[string]any{
 		"BNG_LATLONGCONVERTER_TEST_COORDINATE_CONVERSION_ENTID": map[string]any{},
 		"BNG_LATLONGCONVERTER_TEST_LIVE":    "FALSE",
-		"BNG_LATLONGCONVERTER_APIKEY":       "NONE",
 	})
 
 	live := env["BNG_LATLONGCONVERTER_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["BNG_LATLONGCONVERTER_APIKEY"],
 		}
 		client := sdk.NewBng2latlongConverterSDK(mergedOpts)
 

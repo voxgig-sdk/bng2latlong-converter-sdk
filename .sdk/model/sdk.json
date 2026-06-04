@@ -21,7 +21,17 @@
           }
         ],
         "title": "bng2latlong Converter",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "tagline": "Convert British National Grid easting/northing (OSGB36) to WGS84 latitude and longitude",
+        "homepage": "https://www.getthedata.com/bng2latlong",
+        "docs_url": "https://www.getthedata.com/bng2latlong",
+        "license_short": "Free to use for any purpose; link-back appreciated but not required",
+        "license_md": "- Free to use for any purpose, commercial or non-commercial\n- A link back to the API page is appreciated but not mandatory\n- No authentication or API key required\n- Conversion library (PHPCoord by Doug Wright, originally by Jonathan Stott) is in the public domain",
+        "about_md": "The **bng2latlong Converter** is a small HTTP service from [GetTheData](https://www.getthedata.com/bng2latlong) that turns Ordnance Survey British National Grid coordinates (OSGB36 easting and northing, in metres) into WGS84 geographic coordinates (latitude and longitude in decimal degrees). It is useful for plotting UK survey, postcode, or map data on global mapping platforms such as Google Maps, Leaflet, or Mapbox.\n\nWhat you get from the API:\n- A single GET endpoint that accepts easting and northing path parameters\n- Response fields: `status`, `error` (on failure), `easting`, `northing`, `latitude`, `longitude`\n- JSON output by default, with optional XML output by appending `/xml` to the request\n\nThe conversion is performed server-side using PHPCoord (Doug Wright's port of Jonathan Stott's public-domain PHP coordinate library). No authentication is needed, CORS is enabled, and the service publishes uptime and response-time metrics on its monitoring page. Rate limits are not documented.",
+        "entity_desc": {
+          "coordinate_conversion": "Single coordinate-conversion resource exposed at `/bng2latlong/{easting}/{northing}` that returns the equivalent WGS84 latitude and longitude for a pair of OSGB36 British National Grid coordinates."
+        },
+        "auth": false
       },
       "config": {
         "auth": {
@@ -29,7 +39,15 @@
         },
         "headers": {
           "content-type": "application/json"
-        }
+        },
+        "docs_order": [
+          "ts",
+          "py",
+          "php",
+          "go",
+          "rb",
+          "lua"
+        ]
       },
       "entity": {
         "coordinate_conversion": {
