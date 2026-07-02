@@ -1,6 +1,11 @@
 # Bng2latlongConverter Ruby SDK
 
-The Ruby SDK for the Bng2latlongConverter API. Provides an entity-oriented interface using idiomatic Ruby conventions.
+
+
+The Ruby SDK for the Bng2latlongConverter API — an entity-oriented client using idiomatic Ruby conventions.
+
+> Other languages, the CLI, and MCP server live alongside this one — see
+> the [top-level README](../README.md).
 
 
 ## Install
@@ -31,13 +36,15 @@ loading a specific record.
 ```ruby
 require_relative "Bng2latlongConverter_sdk"
 
-client = Bng2latlongConverterSDK.new({})
+client = Bng2latlongConverterSDK.new({
+  "apikey" => ENV["BNG2LATLONG-CONVERTER_APIKEY"],
+})
 ```
 
 ### 3. Load a coordinateconversion
 
 ```ruby
-result, err = client.CoordinateConversion(nil).load({ "id" => "example_id" }, nil)
+result, err = client.CoordinateConversion().load({ "id" => "example_id" })
 raise err if err
 puts result
 ```
@@ -83,11 +90,9 @@ puts fetchdef["headers"]
 Create a mock client for unit testing — no server required:
 
 ```ruby
-client = Bng2latlongConverterSDK.test(nil, nil)
+client = Bng2latlongConverterSDK.test
 
-result, err = client.Bng2latlongConverter(nil).load(
-  { "id" => "test01" }, nil
-)
+result, err = client.Bng2latlongConverter().load({ "id" => "test01" })
 # result contains mock response data
 ```
 
@@ -119,6 +124,7 @@ Create a `.env.local` file at the project root:
 
 ```
 BNG2LATLONG-CONVERTER_TEST_LIVE=TRUE
+BNG2LATLONG-CONVERTER_APIKEY=<your-key>
 ```
 
 Then run:
@@ -141,6 +147,7 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
+| `apikey` | `String` | API key for authentication. |
 | `base` | `String` | Base URL of the API server. |
 | `prefix` | `String` | URL path prefix prepended to all requests. |
 | `suffix` | `String` | URL path suffix appended to all requests. |

@@ -1,19 +1,8 @@
 # Bng2latlongConverter SDK
 
-Convert British National Grid easting/northing (OSGB36) to WGS84 latitude and longitude
+bng2latlong Converter client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About bng2latlong Converter
-
-The **bng2latlong Converter** is a small HTTP service from [GetTheData](https://www.getthedata.com/bng2latlong) that turns Ordnance Survey British National Grid coordinates (OSGB36 easting and northing, in metres) into WGS84 geographic coordinates (latitude and longitude in decimal degrees). It is useful for plotting UK survey, postcode, or map data on global mapping platforms such as Google Maps, Leaflet, or Mapbox.
-
-What you get from the API:
-- A single GET endpoint that accepts easting and northing path parameters
-- Response fields: `status`, `error` (on failure), `easting`, `northing`, `latitude`, `longitude`
-- JSON output by default, with optional XML output by appending `/xml` to the request
-
-The conversion is performed server-side using PHPCoord (Doug Wright's port of Jonathan Stott's public-domain PHP coordinate library). No authentication is needed, CORS is enabled, and the service publishes uptime and response-time metrics on its monitoring page. Rate limits are not documented.
 
 ## Try it
 
@@ -47,27 +36,31 @@ gem install bng2latlong-converter-sdk
 luarocks install bng2latlong-converter-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { Bng2latlongConverterSDK } from 'bng2latlong-converter'
 
-const client = new Bng2latlongConverterSDK({})
+const client = new Bng2latlongConverterSDK({
+  apikey: process.env.BNG2LATLONG-CONVERTER_APIKEY,
+})
 
+// Load coordinateconversion data
+const coordinateconversion = await client.CoordinateConversion().load({})
+console.log(coordinateconversion.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -97,7 +90,7 @@ The API exposes one entity:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **CoordinateConversion** | Single coordinate-conversion resource exposed at `/bng2latlong/{easting}/{northing}` that returns the equivalent WGS84 latitude and longitude for a pair of OSGB36 British National Grid coordinates. | `/bng2latlong/{easting}/{northing}` |
+| **CoordinateConversion** |  | `/bng2latlong/{easting}/{northing}` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -107,15 +100,17 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from bng2latlongconverter_sdk import Bng2latlongConverterSDK
 
-client = Bng2latlongConverterSDK({})
+client = Bng2latlongConverterSDK({
+    "apikey": os.environ.get("BNG2LATLONG-CONVERTER_APIKEY"),
+})
 
 
 # Load a specific coordinateconversion
-coordinateconversion, err = client.CoordinateConversion(None).load(
-    {"id": "example_id"}, None
-)
+coordinateconversion, err = client.CoordinateConversion().load({"id": "example_id"})
+print(coordinateconversion)
 ```
 
 ### PHP
@@ -124,13 +119,14 @@ coordinateconversion, err = client.CoordinateConversion(None).load(
 <?php
 require_once 'bng2latlongconverter_sdk.php';
 
-$client = new Bng2latlongConverterSDK([]);
+$client = new Bng2latlongConverterSDK([
+    "apikey" => getenv("BNG2LATLONG-CONVERTER_APIKEY"),
+]);
 
 
 // Load a specific coordinateconversion
-[$coordinateconversion, $err] = $client->CoordinateConversion(null)->load(
-    ["id" => "example_id"], null
-);
+[$coordinateconversion, $err] = $client->CoordinateConversion()->load(["id" => "example_id"]);
+print_r($coordinateconversion);
 ```
 
 ### Golang
@@ -138,8 +134,13 @@ $client = new Bng2latlongConverterSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/bng2latlong-converter-sdk/go"
 
-client := sdk.NewBng2latlongConverterSDK(map[string]any{})
+client := sdk.NewBng2latlongConverterSDK(map[string]any{
+    "apikey": os.Getenv("BNG2LATLONG-CONVERTER_APIKEY"),
+})
 
+// Load coordinateconversion data
+coordinateconversion, err := client.CoordinateConversion(nil).Load(map[string]any{}, nil)
+fmt.Println(coordinateconversion)
 ```
 
 ### Ruby
@@ -147,13 +148,14 @@ client := sdk.NewBng2latlongConverterSDK(map[string]any{})
 ```ruby
 require_relative "Bng2latlongConverter_sdk"
 
-client = Bng2latlongConverterSDK.new({})
+client = Bng2latlongConverterSDK.new({
+  "apikey" => ENV["BNG2LATLONG-CONVERTER_APIKEY"],
+})
 
 
 # Load a specific coordinateconversion
-coordinateconversion, err = client.CoordinateConversion(nil).load(
-  { "id" => "example_id" }, nil
-)
+coordinateconversion, err = client.CoordinateConversion().load({ "id" => "example_id" })
+puts coordinateconversion
 ```
 
 ### Lua
@@ -161,13 +163,14 @@ coordinateconversion, err = client.CoordinateConversion(nil).load(
 ```lua
 local sdk = require("bng2latlong-converter_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("BNG2LATLONG-CONVERTER_APIKEY"),
+})
 
 
 -- Load a specific coordinateconversion
-local coordinateconversion, err = client:CoordinateConversion(nil):load(
-  { id = "example_id" }, nil
-)
+local coordinateconversion, err = client:CoordinateConversion():load({ id = "example_id" })
+print(coordinateconversion)
 ```
 
 ## Unit testing in offline mode
@@ -186,25 +189,21 @@ const result = await client.CoordinateConversion().load({ id: 'test01' })
 ### Python
 
 ```python
-client = Bng2latlongConverterSDK.test(None, None)
-result, err = client.CoordinateConversion(None).load(
-    {"id": "test01"}, None
-)
+client = Bng2latlongConverterSDK.test()
+result, err = client.CoordinateConversion().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = Bng2latlongConverterSDK::test(null, null);
-[$result, $err] = $client->CoordinateConversion(null)->load(
-    ["id" => "test01"], null
-);
+$client = Bng2latlongConverterSDK::test();
+[$result, $err] = $client->CoordinateConversion()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.CoordinateConversion(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -213,19 +212,15 @@ result, err := client.CoordinateConversion(nil).Load(
 ### Ruby
 
 ```ruby
-client = Bng2latlongConverterSDK.test(nil, nil)
-result, err = client.CoordinateConversion(nil).load(
-  { "id" => "test01" }, nil
-)
+client = Bng2latlongConverterSDK.test
+result, err = client.CoordinateConversion().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:CoordinateConversion(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:CoordinateConversion():load({ id = "test01" })
 ```
 
 ## How it works
@@ -329,15 +324,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the bng2latlong Converter
-
-- Upstream: [https://www.getthedata.com/bng2latlong](https://www.getthedata.com/bng2latlong)
-
-- Free to use for any purpose, commercial or non-commercial
-- A link back to the API page is appreciated but not mandatory
-- No authentication or API key required
-- Conversion library (PHPCoord by Doug Wright, originally by Jonathan Stott) is in the public domain
 
 ---
 

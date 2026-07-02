@@ -1,6 +1,11 @@
 # Bng2latlongConverter TypeScript SDK
 
-The TypeScript SDK for the Bng2latlongConverter API. Provides a type-safe, entity-oriented interface with full async/await support.
+
+
+The TypeScript SDK for the Bng2latlongConverter API — a type-safe, entity-oriented client with full async/await support.
+
+> Other languages, the CLI, and MCP server live alongside this one — see
+> the [top-level README](../README.md).
 
 
 ## Install
@@ -17,7 +22,9 @@ loading a specific record.
 ```ts
 import { Bng2latlongConverterSDK } from 'bng2latlong-converter'
 
-const client = new Bng2latlongConverterSDK({})
+const client = new Bng2latlongConverterSDK({
+  apikey: process.env.BNG2LATLONG-CONVERTER_APIKEY,
+})
 ```
 
 ### 3. Load a coordinateconversion
@@ -80,7 +87,7 @@ const result = await client.Planet().load({ id: 'test01' })
 You can also use the instance method:
 
 ```ts
-const client = new Bng2latlongConverterSDK()
+const client = new Bng2latlongConverterSDK({ apikey: '...' })
 const testClient = client.tester()
 ```
 
@@ -116,6 +123,7 @@ const logger = {
 }
 
 const client = new Bng2latlongConverterSDK({
+  apikey: '...',
   extend: [logger],
 })
 ```
@@ -126,6 +134,7 @@ Create a `.env.local` file at the project root:
 
 ```
 BNG2LATLONG-CONVERTER_TEST_LIVE=TRUE
+BNG2LATLONG-CONVERTER_APIKEY=<your-key>
 ```
 
 Then run:
@@ -143,6 +152,7 @@ cd ts && npm test
 
 ```ts
 new Bng2latlongConverterSDK(options?: {
+  apikey?: string
   base?: string
   prefix?: string
   suffix?: string
@@ -153,6 +163,7 @@ new Bng2latlongConverterSDK(options?: {
 
 | Option | Type | Description |
 | --- | --- | --- |
+| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |

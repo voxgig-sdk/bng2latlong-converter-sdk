@@ -68,12 +68,14 @@ def _coordinate_conversion_direct_setup(mockres):
     env = runner.env_override({
         "BNG_LATLONGCONVERTER_TEST_COORDINATE_CONVERSION_ENTID": {},
         "BNG_LATLONGCONVERTER_TEST_LIVE": "FALSE",
+        "BNG_LATLONGCONVERTER_APIKEY": "NONE",
     })
 
     live = env.get("BNG_LATLONGCONVERTER_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
+            "apikey": env.get("BNG_LATLONGCONVERTER_APIKEY"),
         }
         client = Bng2latlongConverterSDK(merged_opts)
         return {
