@@ -10,7 +10,7 @@ The Lua SDK for the Bng2latlongConverter API — an entity-oriented client using
 
 ## Install
 ```bash
-luarocks install bng2latlong-converter-sdk
+luarocks install voxgig-sdk-bng2latlong-converter
 ```
 
 If the module is not yet published, add the source directory to

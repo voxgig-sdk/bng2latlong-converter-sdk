@@ -10,13 +10,13 @@ The Ruby SDK for the Bng2latlongConverter API — an entity-oriented client usin
 
 ## Install
 ```bash
-gem install bng2latlong-converter-sdk
+gem install voxgig-sdk-bng2latlong-converter
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "bng2latlong-converter-sdk"
+gem "voxgig-sdk-bng2latlong-converter"
 ```
 
 Then run:

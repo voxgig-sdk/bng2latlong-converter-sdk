@@ -10,7 +10,7 @@ The PHP SDK for the Bng2latlongConverter API — an entity-oriented client using
 
 ## Install
 ```bash
-composer require voxgig/bng2latlong-converter-sdk
+composer require voxgig-sdk/bng2latlong-converter
 ```
 
 

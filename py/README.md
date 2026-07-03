@@ -10,7 +10,7 @@ The Python SDK for the Bng2latlongConverter API — an entity-oriented client fo
 
 ## Install
 ```bash
-pip install bng2latlong-converter-sdk
+pip install voxgig-sdk-bng2latlong-converter
 ```
 
 Or install from source:

@@ -8,12 +8,14 @@ source = {
   dir = "bng2latlong-converter-sdk/lua"
 }
 description = {
-  summary = "Bng2latlongConverter SDK for Lua",
-  license = "MIT"
+  summary = "Unofficial generated Lua SDK for the bng2latlong Converter public API. Not affiliated with or endorsed by the upstream API provider.",
+  homepage = "https://github.com/voxgig-sdk/bng2latlong-converter-sdk",
+  issues_url = "https://github.com/voxgig-sdk/bng2latlong-converter-sdk/issues",
+  license = "MIT",
+  labels = { "voxgig", "sdk", "generated-sdk", "openapi", "api-client", "bng2latlong-converter" }
 }
 dependencies = {
   "lua >= 5.3",
-  "dkjson >= 2.5",
   "dkjson >= 2.5",
 }
 build = {

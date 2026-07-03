@@ -10,7 +10,7 @@ The TypeScript SDK for the Bng2latlongConverter API — a type-safe, entity-orie
 
 ## Install
 ```bash
-npm install bng2latlong-converter
+npm install @voxgig-sdk/bng2latlong-converter
 ```
 ## Tutorial: your first API call
 
