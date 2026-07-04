@@ -244,6 +244,19 @@ end
 
 
 
+-- Idiomatic facade: client:coordinate_conversion():list() / client:coordinate_conversion():load({ id = ... })
+function Bng2latlongConverterSDK:coordinate_conversion(data)
+  local EntityMod = require("entity.coordinate_conversion_entity")
+  if data == nil then
+    if self._coordinate_conversion == nil then
+      self._coordinate_conversion = EntityMod.new(self, nil)
+    end
+    return self._coordinate_conversion
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:coordinate_conversion() instead.
 function Bng2latlongConverterSDK:CoordinateConversion(data)
   local EntityMod = require("entity.coordinate_conversion_entity")
   return EntityMod.new(self, data)

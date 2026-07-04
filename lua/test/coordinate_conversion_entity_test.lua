@@ -91,7 +91,6 @@ function coordinate_conversion_basic_setup(extra)
     ["BNG_LATLONGCONVERTER_TEST_COORDINATE_CONVERSION_ENTID"] = idmap,
     ["BNG_LATLONGCONVERTER_TEST_LIVE"] = "FALSE",
     ["BNG_LATLONGCONVERTER_TEST_EXPLAIN"] = "FALSE",
-    ["BNG_LATLONGCONVERTER_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -103,7 +102,6 @@ function coordinate_conversion_basic_setup(extra)
   if env["BNG_LATLONGCONVERTER_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
-        apikey = env["BNG_LATLONGCONVERTER_APIKEY"],
       },
       extra or {},
     })

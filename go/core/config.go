@@ -14,9 +14,6 @@ func MakeConfig() map[string]any {
 		},
 		"options": map[string]any{
 			"base": "https://api.getthedata.com",
-			"auth": map[string]any{
-				"prefix": "Bearer",
-			},
 			"headers": map[string]any{
 				"content-type": "application/json",
 			},
@@ -81,6 +78,7 @@ func MakeConfig() map[string]any {
 											"orig": "easting",
 											"reqd": true,
 											"type": "`$INTEGER`",
+											"index$": 0,
 										},
 										map[string]any{
 											"active": true,
@@ -90,6 +88,7 @@ func MakeConfig() map[string]any {
 											"orig": "northing",
 											"reqd": true,
 											"type": "`$INTEGER`",
+											"index$": 1,
 										},
 									},
 								},
@@ -124,6 +123,7 @@ func MakeConfig() map[string]any {
 											"orig": "easting",
 											"reqd": true,
 											"type": "`$INTEGER`",
+											"index$": 0,
 										},
 										map[string]any{
 											"active": true,
@@ -133,6 +133,7 @@ func MakeConfig() map[string]any {
 											"orig": "northing",
 											"reqd": true,
 											"type": "`$INTEGER`",
+											"index$": 1,
 										},
 									},
 								},

@@ -15,9 +15,6 @@ def make_config():
         },
         "options": {
             "base": "https://api.getthedata.com",
-            "auth": {
-                "prefix": "Bearer",
-            },
             "headers": {
         "content-type": "application/json",
       },
@@ -82,6 +79,7 @@ def make_config():
                       "orig": "easting",
                       "reqd": True,
                       "type": "`$INTEGER`",
+                      "index$": 0,
                     },
                     {
                       "active": True,
@@ -91,6 +89,7 @@ def make_config():
                       "orig": "northing",
                       "reqd": True,
                       "type": "`$INTEGER`",
+                      "index$": 1,
                     },
                   ],
                 },
@@ -125,6 +124,7 @@ def make_config():
                       "orig": "easting",
                       "reqd": True,
                       "type": "`$INTEGER`",
+                      "index$": 0,
                     },
                     {
                       "active": True,
@@ -134,6 +134,7 @@ def make_config():
                       "orig": "northing",
                       "reqd": True,
                       "type": "`$INTEGER`",
+                      "index$": 1,
                     },
                   ],
                 },

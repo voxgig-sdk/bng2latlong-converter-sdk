@@ -111,7 +111,6 @@ function basicSetup(extra?: any) {
     'BNG_LATLONG_CONVERTER_TEST_COORDINATE_CONVERSION_ENTID': idmap,
     'BNG_LATLONG_CONVERTER_TEST_LIVE': 'FALSE',
     'BNG_LATLONG_CONVERTER_TEST_EXPLAIN': 'FALSE',
-    'BNG_LATLONG_CONVERTER_APIKEY': 'NONE',
   })
 
   idmap = env['BNG_LATLONG_CONVERTER_TEST_COORDINATE_CONVERSION_ENTID']
@@ -121,7 +120,6 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new Bng2latlongConverterSDK(merge([
       {
-        apikey: env.BNG_LATLONG_CONVERTER_APIKEY,
       },
       extra
     ]))

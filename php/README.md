@@ -9,9 +9,10 @@ The PHP SDK for the Bng2latlongConverter API — an entity-oriented client using
 
 
 ## Install
-```bash
-composer require voxgig-sdk/bng2latlong-converter
-```
+This package is not yet published to Packagist. Install it from the
+GitHub release tag (`php/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/bng2latlong-converter-sdk/releases](https://github.com/voxgig-sdk/bng2latlong-converter-sdk/releases)
 
 
 ## Tutorial: your first API call
@@ -25,17 +26,18 @@ loading a specific record.
 <?php
 require_once 'bng2latlongconverter_sdk.php';
 
-$client = new Bng2latlongConverterSDK([
-    "apikey" => getenv("BNG2LATLONG-CONVERTER_APIKEY"),
-]);
+$client = new Bng2latlongConverterSDK();
 ```
 
 ### 3. Load a coordinateconversion
 
 ```php
-[$result, $err] = $client->CoordinateConversion()->load(["id" => "example_id"]);
-if ($err) { throw new \Exception($err); }
-print_r($result);
+try {
+    $result = $client->coordinateconversion()->load(["id" => "example_id"]);
+    print_r($result);
+} catch (\Exception $err) {
+    echo "Error: " . $err->getMessage();
+}
 ```
 
 
@@ -46,28 +48,31 @@ print_r($result);
 For endpoints not covered by entity methods:
 
 ```php
-[$result, $err] = $client->direct([
+// direct() is the raw-HTTP escape hatch: it returns a result array
+// (it does not throw). Branch on $result["ok"].
+$result = $client->direct([
     "path" => "/api/resource/{id}",
     "method" => "GET",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 if ($result["ok"]) {
     echo $result["status"];  // 200
     print_r($result["data"]);  // response body
+} else {
+    echo "Error: " . $result["err"]->getMessage();
 }
 ```
 
 ### Prepare a request without sending it
 
 ```php
-[$fetchdef, $err] = $client->prepare([
+// prepare() throws on error and returns the fetch definition.
+$fetchdef = $client->prepare([
     "path" => "/api/resource/{id}",
     "method" => "DELETE",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 echo $fetchdef["url"];
 echo $fetchdef["method"];
@@ -81,7 +86,7 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = Bng2latlongConverterSDK::test();
 
-[$result, $err] = $client->Bng2latlongConverter()->load(["id" => "test01"]);
+$result = $client->coordinateconversion()->load(["id" => "test01"]);
 // $result contains mock response data
 ```
 
@@ -115,8 +120,7 @@ $client = new Bng2latlongConverterSDK([
 Create a `.env.local` file at the project root:
 
 ```
-BNG2LATLONG-CONVERTER_TEST_LIVE=TRUE
-BNG2LATLONG-CONVERTER_APIKEY=<your-key>
+BNG2LATLONG_CONVERTER_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -139,7 +143,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -185,8 +188,12 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `[$result, $err]`. The first value is an
-`array` with these keys:
+Entity operations return the bare result data (an `array` for single-entity
+ops, a `list` for `list`) and throw on error. Wrap calls in
+`try`/`catch` to handle failures.
+
+The `direct()` escape hatch never throws — it returns a result `array`
+you branch on via `$result["ok"]`:
 
 | Key | Type | Description |
 | --- | --- | --- |
@@ -220,7 +227,7 @@ API path: `/bng2latlong/{easting}/{northing}`
 
 ### CoordinateConversion
 
-Create an instance: `const coordinate_conversion = client.CoordinateConversion()`
+Create an instance: `const coordinate_conversion = client.coordinate_conversion`
 
 #### Operations
 
@@ -241,7 +248,7 @@ Create an instance: `const coordinate_conversion = client.CoordinateConversion()
 #### Example: Load
 
 ```ts
-const coordinate_conversion = await client.CoordinateConversion().load({ id: 'coordinate_conversion_id' })
+const coordinate_conversion = await client.coordinate_conversion.load({ id: 'coordinate_conversion_id' })
 ```
 
 
@@ -316,11 +323,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$moon = $client->Moon();
-[$result, $err] = $moon->load(["planet_id" => "earth", "id" => "luna"]);
+$coordinateconversion = $client->coordinateconversion();
+$coordinateconversion->load(["id" => "example_id"]);
 
-// $moon->dataGet() now returns the loaded moon data
-// $moon->matchGet() returns the last match criteria
+// $coordinateconversion->dataGet() now returns the loaded coordinateconversion data
+// $coordinateconversion->matchGet() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

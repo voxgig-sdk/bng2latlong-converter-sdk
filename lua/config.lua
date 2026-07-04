@@ -14,9 +14,6 @@ local function make_config()
     },
     options = {
       base = "https://api.getthedata.com",
-      auth = {
-        prefix = "Bearer",
-      },
       headers = {
         ["content-type"] = "application/json",
       },
@@ -81,6 +78,7 @@ local function make_config()
                       ["orig"] = "easting",
                       ["reqd"] = true,
                       ["type"] = "`$INTEGER`",
+                      ["index$"] = 0,
                     },
                     {
                       ["active"] = true,
@@ -90,6 +88,7 @@ local function make_config()
                       ["orig"] = "northing",
                       ["reqd"] = true,
                       ["type"] = "`$INTEGER`",
+                      ["index$"] = 1,
                     },
                   },
                 },
@@ -124,6 +123,7 @@ local function make_config()
                       ["orig"] = "easting",
                       ["reqd"] = true,
                       ["type"] = "`$INTEGER`",
+                      ["index$"] = 0,
                     },
                     {
                       ["active"] = true,
@@ -133,6 +133,7 @@ local function make_config()
                       ["orig"] = "northing",
                       ["reqd"] = true,
                       ["type"] = "`$INTEGER`",
+                      ["index$"] = 1,
                     },
                   },
                 },

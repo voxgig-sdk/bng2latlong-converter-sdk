@@ -38,10 +38,6 @@ class Config {
   options = {
     base: 'https://api.getthedata.com',
 
-    auth: {
-      prefix: 'Bearer',
-    },
-
     headers: {
       "content-type": "application/json"
     },
@@ -111,7 +107,8 @@ class Config {
                     "name": "easting",
                     "orig": "easting",
                     "reqd": true,
-                    "type": "`$INTEGER`"
+                    "type": "`$INTEGER`",
+                    "index$": 0
                   },
                   {
                     "active": true,
@@ -120,7 +117,8 @@ class Config {
                     "name": "northing",
                     "orig": "northing",
                     "reqd": true,
-                    "type": "`$INTEGER`"
+                    "type": "`$INTEGER`",
+                    "index$": 1
                   }
                 ]
               },
@@ -154,7 +152,8 @@ class Config {
                     "name": "easting",
                     "orig": "easting",
                     "reqd": true,
-                    "type": "`$INTEGER`"
+                    "type": "`$INTEGER`",
+                    "index$": 0
                   },
                   {
                     "active": true,
@@ -163,7 +162,8 @@ class Config {
                     "name": "northing",
                     "orig": "northing",
                     "reqd": true,
-                    "type": "`$INTEGER`"
+                    "type": "`$INTEGER`",
+                    "index$": 1
                   }
                 ]
               },

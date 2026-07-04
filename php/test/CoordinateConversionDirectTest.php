@@ -30,7 +30,7 @@ class CoordinateConversionDirectTest extends TestCase
             $params["northing"] = "direct02";
         }
 
-        [$result, $err] = $client->direct([
+        $result = $client->direct([
             "path" => "bng2latlong/{easting}/{northing}",
             "method" => "GET",
             "params" => $params,
@@ -40,8 +40,8 @@ class CoordinateConversionDirectTest extends TestCase
             // Live mode is lenient: synthetic IDs frequently 4xx. Skip
             // rather than fail when the load endpoint isn't reachable
             // with the IDs we can construct from setup.idmap.
-            if ($err !== null) {
-                $this->markTestSkipped("load call failed (likely synthetic IDs against live API): " . (string)$err);
+            if (!empty($result["err"])) {
+                $this->markTestSkipped("load call failed (likely synthetic IDs against live API): " . (string)$result["err"]);
                 return;
             }
             if (empty($result["ok"])) {
@@ -54,7 +54,7 @@ class CoordinateConversionDirectTest extends TestCase
                 return;
             }
         } else {
-            $this->assertNull($err);
+            $this->assertArrayNotHasKey("err", $result);
             $this->assertTrue($result["ok"]);
             $this->assertEquals(200, Helpers::to_int($result["status"]));
             $this->assertNotNull($result["data"]);
@@ -77,14 +77,12 @@ function coordinate_conversion_direct_setup($mockres)
     $env = Runner::env_override([
         "BNG_LATLONGCONVERTER_TEST_COORDINATE_CONVERSION_ENTID" => [],
         "BNG_LATLONGCONVERTER_TEST_LIVE" => "FALSE",
-        "BNG_LATLONGCONVERTER_APIKEY" => "NONE",
     ]);
 
     $live = $env["BNG_LATLONGCONVERTER_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [
-            "apikey" => $env["BNG_LATLONGCONVERTER_APIKEY"],
         ];
         $client = new Bng2latlongConverterSDK($merged_opts);
         return [

@@ -49,8 +49,7 @@ class CoordinateConversionEntityTest extends TestCase
         // LOAD
         $coordinate_conversion_ref01_ent = $client->CoordinateConversion(null);
         $coordinate_conversion_ref01_match_dt0 = [];
-        [$coordinate_conversion_ref01_data_dt0_loaded, $err] = $coordinate_conversion_ref01_ent->load($coordinate_conversion_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $coordinate_conversion_ref01_data_dt0_loaded = $coordinate_conversion_ref01_ent->load($coordinate_conversion_ref01_match_dt0, null);
         $this->assertNotNull($coordinate_conversion_ref01_data_dt0_loaded);
 
     }
@@ -85,7 +84,6 @@ function coordinate_conversion_basic_setup($extra)
         "BNG_LATLONGCONVERTER_TEST_COORDINATE_CONVERSION_ENTID" => $idmap,
         "BNG_LATLONGCONVERTER_TEST_LIVE" => "FALSE",
         "BNG_LATLONGCONVERTER_TEST_EXPLAIN" => "FALSE",
-        "BNG_LATLONGCONVERTER_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -97,7 +95,6 @@ function coordinate_conversion_basic_setup($extra)
     if ($env["BNG_LATLONGCONVERTER_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["BNG_LATLONGCONVERTER_APIKEY"],
             ],
             $extra ?? [],
         ]);

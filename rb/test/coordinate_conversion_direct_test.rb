@@ -25,7 +25,7 @@ class CoordinateConversionDirectTest < Minitest::Test
       params["northing"] = "direct02"
     end
 
-    result, err = client.direct({
+    result = client.direct({
       "path" => "bng2latlong/{easting}/{northing}",
       "method" => "GET",
       "params" => params,
@@ -35,8 +35,8 @@ class CoordinateConversionDirectTest < Minitest::Test
       # Live mode is lenient: synthetic IDs frequently 4xx. Skip rather
       # than fail when the load endpoint isn't reachable with the IDs
       # we can construct from setup.idmap.
-      if !err.nil?
-        skip("load call failed (likely synthetic IDs against live API): #{err}")
+      if !result["err"].nil?
+        skip("load call failed (likely synthetic IDs against live API): #{result["err"]}")
         return
       end
       unless result["ok"]
@@ -49,7 +49,7 @@ class CoordinateConversionDirectTest < Minitest::Test
         return
       end
     else
-      assert_nil err
+      assert_nil result["err"]
       assert result["ok"]
       assert_equal 200, Helpers.to_int(result["status"])
       assert !result["data"].nil?
@@ -71,14 +71,12 @@ def coordinate_conversion_direct_setup(mockres)
   env = Runner.env_override({
     "BNG_LATLONGCONVERTER_TEST_COORDINATE_CONVERSION_ENTID" => {},
     "BNG_LATLONGCONVERTER_TEST_LIVE" => "FALSE",
-    "BNG_LATLONGCONVERTER_APIKEY" => "NONE",
   })
 
   live = env["BNG_LATLONGCONVERTER_TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {
-      "apikey" => env["BNG_LATLONGCONVERTER_APIKEY"],
     }
     client = Bng2latlongConverterSDK.new(merged_opts)
     return {

@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch CoordinateConversionLoadMatch
+---@param ctrl? table
+---@return CoordinateConversion
+---@return string? err
 function CoordinateConversionEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  CoordinateConversion,
+  CoordinateConversionLoadMatch,
+} from '../Bng2latlongConverterTypes'
 
 // TODO: needs Entity superclass
-class CoordinateConversionEntity extends Bng2latlongConverterEntityBase {
+class CoordinateConversionEntity extends Bng2latlongConverterEntityBase<CoordinateConversion> {
 
   constructor(client: Bng2latlongConverterSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +36,7 @@ class CoordinateConversionEntity extends Bng2latlongConverterEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: CoordinateConversionLoadMatch, ctrl?: Control): Promise<CoordinateConversion> {
 
     const utility = this._utility
 
@@ -136,7 +140,9 @@ class CoordinateConversionEntity extends Bng2latlongConverterEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<CoordinateConversion> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

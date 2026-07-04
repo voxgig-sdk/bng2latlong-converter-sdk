@@ -49,8 +49,7 @@ class TestCoordinateConversionEntity:
         # LOAD
         coordinate_conversion_ref01_ent = client.CoordinateConversion(None)
         coordinate_conversion_ref01_match_dt0 = {}
-        coordinate_conversion_ref01_data_dt0_loaded, err = coordinate_conversion_ref01_ent.load(coordinate_conversion_ref01_match_dt0, None)
-        assert err is None
+        coordinate_conversion_ref01_data_dt0_loaded = coordinate_conversion_ref01_ent.load(coordinate_conversion_ref01_match_dt0, None)
         assert coordinate_conversion_ref01_data_dt0_loaded is not None
 
 
@@ -91,7 +90,6 @@ def _coordinate_conversion_basic_setup(extra):
         "BNG_LATLONGCONVERTER_TEST_COORDINATE_CONVERSION_ENTID": idmap,
         "BNG_LATLONGCONVERTER_TEST_LIVE": "FALSE",
         "BNG_LATLONGCONVERTER_TEST_EXPLAIN": "FALSE",
-        "BNG_LATLONGCONVERTER_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -102,7 +100,6 @@ def _coordinate_conversion_basic_setup(extra):
     if env.get("BNG_LATLONGCONVERTER_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("BNG_LATLONGCONVERTER_APIKEY"),
             },
             extra or {},
         ])

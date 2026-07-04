@@ -20,9 +20,6 @@ class Bng2latlongConverterConfig
             ],
             "options" => [
                 "base" => "https://api.getthedata.com",
-                "auth" => [
-                    "prefix" => "Bearer",
-                ],
                 "headers" => [
           'content-type' => 'application/json',
         ],
@@ -87,6 +84,7 @@ class Bng2latlongConverterConfig
                         'orig' => 'easting',
                         'reqd' => true,
                         'type' => '`$INTEGER`',
+                        'index$' => 0,
                       ],
                       [
                         'active' => true,
@@ -96,6 +94,7 @@ class Bng2latlongConverterConfig
                         'orig' => 'northing',
                         'reqd' => true,
                         'type' => '`$INTEGER`',
+                        'index$' => 1,
                       ],
                     ],
                   ],
@@ -130,6 +129,7 @@ class Bng2latlongConverterConfig
                         'orig' => 'easting',
                         'reqd' => true,
                         'type' => '`$INTEGER`',
+                        'index$' => 0,
                       ],
                       [
                         'active' => true,
@@ -139,6 +139,7 @@ class Bng2latlongConverterConfig
                         'orig' => 'northing',
                         'reqd' => true,
                         'type' => '`$INTEGER`',
+                        'index$' => 1,
                       ],
                     ],
                   ],

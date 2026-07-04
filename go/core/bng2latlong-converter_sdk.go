@@ -245,6 +245,9 @@ func (sdk *Bng2latlongConverterSDK) Direct(fetchargs map[string]any) (map[string
 }
 
 
+// CoordinateConversion returns a CoordinateConversion entity bound to this client.
+// Idiomatic usage: client.CoordinateConversion(nil).List(nil, nil) or
+// client.CoordinateConversion(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *Bng2latlongConverterSDK) CoordinateConversion(data map[string]any) Bng2latlongConverterEntity {
 	return NewCoordinateConversionEntityFunc(sdk, data)
 }

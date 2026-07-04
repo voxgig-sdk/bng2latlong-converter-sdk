@@ -9,9 +9,12 @@ The TypeScript SDK for the Bng2latlongConverter API — a type-safe, entity-orie
 
 
 ## Install
-```bash
-npm install @voxgig-sdk/bng2latlong-converter
-```
+This package is not yet published to npm. Install it from the GitHub
+release tag (`ts/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/bng2latlong-converter-sdk/releases](https://github.com/voxgig-sdk/bng2latlong-converter-sdk/releases)
+
+
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
@@ -20,17 +23,15 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { Bng2latlongConverterSDK } from 'bng2latlong-converter'
+import { Bng2latlongConverterSDK } from '@voxgig-sdk/bng2latlong-converter'
 
-const client = new Bng2latlongConverterSDK({
-  apikey: process.env.BNG2LATLONG-CONVERTER_APIKEY,
-})
+const client = new Bng2latlongConverterSDK()
 ```
 
 ### 3. Load a coordinateconversion
 
 ```ts
-const result = await client.CoordinateConversion().load({ id: 'example_id' })
+const result = await client.coordinateconversion.load({ id: 'example_id' })
 
 if (result.ok) {
   console.log(result.data)
@@ -79,7 +80,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = Bng2latlongConverterSDK.test()
 
-const result = await client.Planet().load({ id: 'test01' })
+const result = await client.coordinateconversion.load({ id: 'test01' })
 // result.ok === true
 // result.data contains mock response data
 ```
@@ -87,7 +88,7 @@ const result = await client.Planet().load({ id: 'test01' })
 You can also use the instance method:
 
 ```ts
-const client = new Bng2latlongConverterSDK({ apikey: '...' })
+const client = new Bng2latlongConverterSDK()
 const testClient = client.tester()
 ```
 
@@ -96,7 +97,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Planet()
+const entity = client.coordinateconversion
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -123,7 +124,6 @@ const logger = {
 }
 
 const client = new Bng2latlongConverterSDK({
-  apikey: '...',
   extend: [logger],
 })
 ```
@@ -133,8 +133,7 @@ const client = new Bng2latlongConverterSDK({
 Create a `.env.local` file at the project root:
 
 ```
-BNG2LATLONG-CONVERTER_TEST_LIVE=TRUE
-BNG2LATLONG-CONVERTER_APIKEY=<your-key>
+BNG2LATLONG_CONVERTER_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -152,7 +151,6 @@ cd ts && npm test
 
 ```ts
 new Bng2latlongConverterSDK(options?: {
-  apikey?: string
   base?: string
   prefix?: string
   suffix?: string
@@ -163,7 +161,6 @@ new Bng2latlongConverterSDK(options?: {
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -270,7 +267,7 @@ API path: `/bng2latlong/{easting}/{northing}`
 
 ### CoordinateConversion
 
-Create an instance: `const coordinate_conversion = client.CoordinateConversion()`
+Create an instance: `const coordinate_conversion = client.coordinate_conversion`
 
 #### Operations
 
@@ -291,7 +288,7 @@ Create an instance: `const coordinate_conversion = client.CoordinateConversion()
 #### Example: Load
 
 ```ts
-const coordinate_conversion = await client.CoordinateConversion().load({ id: 'coordinate_conversion_id' })
+const coordinate_conversion = await client.coordinate_conversion.load({ id: 'coordinate_conversion_id' })
 ```
 
 
@@ -352,7 +349,7 @@ bng2latlong-converter/
 Import the SDK from the package root:
 
 ```ts
-import { Bng2latlongConverterSDK } from 'bng2latlong-converter'
+import { Bng2latlongConverterSDK } from '@voxgig-sdk/bng2latlong-converter'
 ```
 
 ### Entity state
@@ -362,11 +359,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const moon = client.Moon()
-await moon.load({ planet_id: 'earth', id: 'luna' })
+const coordinateconversion = client.coordinateconversion
+await coordinateconversion.load({ id: "example_id" })
 
-// moon.data() now returns the loaded moon data
-// moon.match() returns { planet_id: 'earth', id: 'luna' }
+// coordinateconversion.data() now returns the loaded coordinateconversion data
+// coordinateconversion.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

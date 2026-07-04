@@ -15,9 +15,6 @@ module Bng2latlongConverterConfig
       },
       "options" => {
         "base" => "https://api.getthedata.com",
-        "auth" => {
-          "prefix" => "Bearer",
-        },
         "headers" => {
           "content-type" => "application/json",
         },
@@ -82,6 +79,7 @@ module Bng2latlongConverterConfig
                         "orig" => "easting",
                         "reqd" => true,
                         "type" => "`$INTEGER`",
+                        "index$" => 0,
                       },
                       {
                         "active" => true,
@@ -91,6 +89,7 @@ module Bng2latlongConverterConfig
                         "orig" => "northing",
                         "reqd" => true,
                         "type" => "`$INTEGER`",
+                        "index$" => 1,
                       },
                     ],
                   },
@@ -125,6 +124,7 @@ module Bng2latlongConverterConfig
                         "orig" => "easting",
                         "reqd" => true,
                         "type" => "`$INTEGER`",
+                        "index$" => 0,
                       },
                       {
                         "active" => true,
@@ -134,6 +134,7 @@ module Bng2latlongConverterConfig
                         "orig" => "northing",
                         "reqd" => true,
                         "type" => "`$INTEGER`",
+                        "index$" => 1,
                       },
                     ],
                   },

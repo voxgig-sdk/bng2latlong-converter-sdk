@@ -4,6 +4,7 @@
 main: {
   kit: {
     info: {
+      auth: false
       contact: {
         name: "GetTheData"
         url: "https://www.getthedata.com/bng2latlong"
