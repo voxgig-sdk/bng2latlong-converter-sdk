@@ -33,9 +33,10 @@ $client = new Bng2latlongConverterSDK();
 
 ```php
 try {
-    $result = $client->coordinateconversion()->load(["id" => "example_id"]);
-    print_r($result);
-} catch (\Exception $err) {
+    // load() returns the bare CoordinateConversion record (throws on error).
+    $coordinateconversion = $client->CoordinateConversion()->load(["id" => "example_id"]);
+    print_r($coordinateconversion);
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -81,13 +82,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = Bng2latlongConverterSDK::test();
+$client = Bng2latlongConverterSDK::test([
+    "entity" => ["coordinateconversion" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->coordinateconversion()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$coordinateconversion = $client->CoordinateConversion()->load(["id" => "test01"]);
+print_r($coordinateconversion);
 ```
 
 ### Use a custom fetch function
@@ -227,7 +232,7 @@ API path: `/bng2latlong/{easting}/{northing}`
 
 ### CoordinateConversion
 
-Create an instance: `const coordinate_conversion = client.coordinate_conversion`
+Create an instance: `$coordinate_conversion = $client->CoordinateConversion();`
 
 #### Operations
 
@@ -247,8 +252,9 @@ Create an instance: `const coordinate_conversion = client.coordinate_conversion`
 
 #### Example: Load
 
-```ts
-const coordinate_conversion = await client.coordinate_conversion.load({ id: 'coordinate_conversion_id' })
+```php
+// load() returns the bare CoordinateConversion record (throws on error).
+$coordinate_conversion = $client->CoordinateConversion()->load(["id" => "coordinate_conversion_id"]);
 ```
 
 
@@ -323,7 +329,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$coordinateconversion = $client->coordinateconversion();
+$coordinateconversion = $client->CoordinateConversion();
 $coordinateconversion->load(["id" => "example_id"]);
 
 // $coordinateconversion->dataGet() now returns the loaded coordinateconversion data

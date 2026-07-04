@@ -208,13 +208,7 @@ class Bng2latlongConverterSDK
   end
 
 
-  # Idiomatic facade: client.coordinate_conversion.list / client.coordinate_conversion.load({ "id" => ... })
-  def coordinate_conversion
-    require_relative 'entity/coordinate_conversion_entity'
-    @coordinate_conversion ||= CoordinateConversionEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.coordinate_conversion instead.
+  # Canonical facade: client.CoordinateConversion.list / client.CoordinateConversion.load({ "id" => ... })
   def CoordinateConversion(data = nil)
     require_relative 'entity/coordinate_conversion_entity'
     CoordinateConversionEntity.new(self, data)

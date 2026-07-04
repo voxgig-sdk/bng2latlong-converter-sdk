@@ -86,7 +86,7 @@ same parameters as `direct()`. Raises on error.
 ## CoordinateConversionEntity
 
 ```ruby
-coordinate_conversion = client.coordinate_conversion
+coordinate_conversion = client.CoordinateConversion
 ```
 
 ### Fields
@@ -106,7 +106,7 @@ coordinate_conversion = client.coordinate_conversion
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.coordinate_conversion.load({ "id" => "coordinate_conversion_id" })
+result = client.CoordinateConversion.load({ "id" => "coordinate_conversion_id" })
 ```
 
 ### Common Methods

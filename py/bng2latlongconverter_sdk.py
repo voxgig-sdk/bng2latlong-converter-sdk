@@ -220,25 +220,15 @@ class Bng2latlongConverterSDK:
         }
 
 
-    @property
-    def coordinate_conversion(self):
-        """Idiomatic facade: client.coordinate_conversion.list() / client.coordinate_conversion.load({"id": ...})."""
-        from entity.coordinate_conversion_entity import CoordinateConversionEntity
-        cached = getattr(self, "_coordinate_conversion", None)
-        if cached is None:
-            cached = CoordinateConversionEntity(self, None)
-            self._coordinate_conversion = cached
-        return cached
-
-    def CoordinateConversion(self, data=None):
-        # Deprecated: use client.coordinate_conversion instead.
+    def CoordinateConversion(self, data=None) -> "CoordinateConversionEntity":
+        """Entity factory: client.CoordinateConversion().list({}) / client.CoordinateConversion().load({"id": ...})."""
         from entity.coordinate_conversion_entity import CoordinateConversionEntity
         return CoordinateConversionEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "Bng2latlongConverterSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -258,3 +248,9 @@ class Bng2latlongConverterSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.coordinate_conversion_entity import CoordinateConversionEntity

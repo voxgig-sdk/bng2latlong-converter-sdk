@@ -32,8 +32,9 @@ client = Bng2latlongConverterSDK.new
 
 ```ruby
 begin
-  result = client.coordinateconversion.load({ "id" => "example_id" })
-  puts result
+  # load returns the bare CoordinateConversion record (raises on error).
+  coordinateconversion = client.CoordinateConversion.load({ "id" => "example_id" })
+  puts coordinateconversion
 rescue => err
   warn "load failed: #{err}"
 end
@@ -80,13 +81,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = Bng2latlongConverterSDK.test
+client = Bng2latlongConverterSDK.test({
+  "entity" => { "coordinateconversion" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.coordinateconversion.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+coordinateconversion = client.CoordinateConversion.load({ "id" => "test01" })
+puts coordinateconversion
 ```
 
 ### Use a custom fetch function
@@ -222,7 +227,7 @@ API path: `/bng2latlong/{easting}/{northing}`
 
 ### CoordinateConversion
 
-Create an instance: `const coordinate_conversion = client.coordinate_conversion`
+Create an instance: `coordinate_conversion = client.CoordinateConversion`
 
 #### Operations
 
@@ -242,8 +247,9 @@ Create an instance: `const coordinate_conversion = client.coordinate_conversion`
 
 #### Example: Load
 
-```ts
-const coordinate_conversion = await client.coordinate_conversion.load({ id: 'coordinate_conversion_id' })
+```ruby
+# load returns the bare CoordinateConversion record (raises on error).
+coordinate_conversion = client.CoordinateConversion.load({ "id" => "coordinate_conversion_id" })
 ```
 
 
@@ -318,7 +324,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-coordinateconversion = client.coordinateconversion
+coordinateconversion = client.CoordinateConversion
 coordinateconversion.load({ "id" => "example_id" })
 
 # coordinateconversion.data_get now returns the loaded coordinateconversion data

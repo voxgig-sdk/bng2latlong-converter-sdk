@@ -26,9 +26,9 @@ import { Bng2latlongConverterSDK } from '@voxgig-sdk/bng2latlong-converter'
 
 const client = new Bng2latlongConverterSDK()
 
-// Load coordinateconversion data
-const coordinateconversion = await client.coordinateconversion.load({})
-console.log(coordinateconversion.data)
+// Load coordinateconversion data (returns a CoordinateConversion)
+const coordinateconversion = await client.CoordinateConversion().load()
+console.log(coordinateconversion)
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -84,8 +84,8 @@ from bng2latlongconverter_sdk import Bng2latlongConverterSDK
 client = Bng2latlongConverterSDK()
 
 
-# Load a specific coordinateconversion
-coordinateconversion = client.coordinateconversion.load({"id": "example_id"})
+# Load a specific coordinateconversion (returns the record, raises on error)
+coordinateconversion = client.CoordinateConversion().load({"id": "example_id"})
 print(coordinateconversion)
 ```
 
@@ -98,8 +98,8 @@ require_once 'bng2latlongconverter_sdk.php';
 $client = new Bng2latlongConverterSDK();
 
 
-// Load a specific coordinateconversion
-$coordinateconversion = $client->coordinateconversion()->load(["id" => "example_id"]);
+// Load a specific coordinateconversion (returns the bare record; throws on error)
+$coordinateconversion = $client->CoordinateConversion()->load(["id" => "example_id"]);
 print_r($coordinateconversion);
 ```
 
@@ -123,8 +123,8 @@ require_relative "Bng2latlongConverter_sdk"
 client = Bng2latlongConverterSDK.new
 
 
-# Load a specific coordinateconversion
-coordinateconversion = client.coordinateconversion.load({ "id" => "example_id" })
+# Load a specific coordinateconversion (returns the bare record; raises on error)
+coordinateconversion = client.CoordinateConversion.load({ "id" => "example_id" })
 puts coordinateconversion
 ```
 
@@ -137,7 +137,7 @@ local client = sdk.new()
 
 
 -- Load a specific coordinateconversion
-local coordinateconversion, err = client:coordinateconversion():load({ id = "example_id" })
+local coordinateconversion, err = client:CoordinateConversion():load({ id = "example_id" })
 print(coordinateconversion)
 ```
 
@@ -150,22 +150,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = Bng2latlongConverterSDK.test()
-const result = await client.coordinateconversion.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const coordinateconversion = await client.CoordinateConversion().load({ id: 'test01' })
+// coordinateconversion is a bare CoordinateConversion populated with mock data
+console.log(coordinateconversion)
 ```
 
 ### Python
 
 ```python
 client = Bng2latlongConverterSDK.test()
-result = client.coordinateconversion.load({"id": "test01"})
+coordinateconversion = client.CoordinateConversion().load({"id": "test01"})
+print(coordinateconversion)
 ```
 
 ### PHP
 
 ```php
-$client = Bng2latlongConverterSDK::test();
-$result = $client->coordinateconversion()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = Bng2latlongConverterSDK::test([
+    "entity" => ["coordinateconversion" => ["test01" => ["id" => "test01"]]],
+]);
+$coordinateconversion = $client->CoordinateConversion()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -180,15 +185,18 @@ result, err := client.CoordinateConversion(nil).Load(
 ### Ruby
 
 ```ruby
-client = Bng2latlongConverterSDK.test
-result = client.coordinateconversion.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = Bng2latlongConverterSDK.test({
+  "entity" => { "coordinateconversion" => { "test01" => { "id" => "test01" } } },
+})
+coordinateconversion = client.CoordinateConversion.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:coordinateconversion():load({ id = "test01" })
+local result, err = client:CoordinateConversion():load({ id = "test01" })
 ```
 
 ## How it works
@@ -236,6 +244,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

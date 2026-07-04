@@ -85,7 +85,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## CoordinateConversionEntity
 
 ```php
-$coordinate_conversion = $client->coordinate_conversion();
+$coordinate_conversion = $client->CoordinateConversion();
 ```
 
 ### Fields
@@ -105,7 +105,7 @@ $coordinate_conversion = $client->coordinate_conversion();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->coordinate_conversion()->load(["id" => "coordinate_conversion_id"]);
+$result = $client->CoordinateConversion()->load(["id" => "coordinate_conversion_id"]);
 ```
 
 ### Common Methods

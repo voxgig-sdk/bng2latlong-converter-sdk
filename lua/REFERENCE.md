@@ -83,7 +83,7 @@ same parameters as `direct()`.
 ## CoordinateConversionEntity
 
 ```lua
-local coordinate_conversion = client:coordinate_conversion(nil)
+local coordinate_conversion = client:CoordinateConversion(nil)
 ```
 
 ### Fields
@@ -103,7 +103,7 @@ local coordinate_conversion = client:coordinate_conversion(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:coordinate_conversion():load({ id = "coordinate_conversion_id" })
+local result, err = client:CoordinateConversion():load({ id = "coordinate_conversion_id" })
 ```
 
 ### Common Methods

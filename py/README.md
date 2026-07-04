@@ -33,10 +33,12 @@ client = Bng2latlongConverterSDK()
 
 ### 3. Load a coordinateconversion
 
+`load()` returns the bare record (a `dict`) and raises on error.
+
 ```python
 try:
-    result = client.coordinateconversion.load({"id": "example_id"})
-    print(result)
+    coordinateconversion = client.CoordinateConversion().load({"id": "example_id"})
+    print(coordinateconversion)
 except Exception as err:
     print(f"load failed: {err}")
 ```
@@ -84,8 +86,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = Bng2latlongConverterSDK.test()
 
-result = client.coordinateconversion.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+coordinateconversion = client.CoordinateConversion().load({"id": "test01"})
+# coordinateconversion contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -222,7 +225,7 @@ API path: `/bng2latlong/{easting}/{northing}`
 
 ### CoordinateConversion
 
-Create an instance: `const coordinate_conversion = client.coordinate_conversion`
+Create an instance: `coordinate_conversion = client.CoordinateConversion()`
 
 #### Operations
 
@@ -242,8 +245,8 @@ Create an instance: `const coordinate_conversion = client.coordinate_conversion`
 
 #### Example: Load
 
-```ts
-const coordinate_conversion = await client.coordinate_conversion.load({ id: 'coordinate_conversion_id' })
+```python
+coordinate_conversion = client.CoordinateConversion().load({"id": "coordinate_conversion_id"})
 ```
 
 
@@ -317,7 +320,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-coordinateconversion = client.coordinateconversion
+coordinateconversion = client.CoordinateConversion()
 coordinateconversion.load({"id": "example_id"})
 
 # coordinateconversion.data_get() now returns the loaded coordinateconversion data

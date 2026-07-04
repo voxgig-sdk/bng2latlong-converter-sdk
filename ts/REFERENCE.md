@@ -109,7 +109,7 @@ Alias for `Bng2latlongConverterSDK.test()`.
 ## CoordinateConversionEntity
 
 ```ts
-const coordinate_conversion = client.coordinate_conversion
+const coordinate_conversion = client.CoordinateConversion()
 ```
 
 ### Fields
@@ -129,7 +129,7 @@ const coordinate_conversion = client.coordinate_conversion
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.coordinate_conversion.load({ id: 'coordinate_conversion_id' })
+const result = await client.CoordinateConversion().load({ id: 'coordinate_conversion_id' })
 ```
 
 ### Common Methods

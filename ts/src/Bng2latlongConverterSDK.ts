@@ -204,14 +204,7 @@ class Bng2latlongConverterSDK {
 
 
 
-  _coordinate_conversion?: CoordinateConversionEntity
-
-  // Idiomatic facade: `client.coordinate_conversion.list()` / `client.coordinate_conversion.load({ id })`.
-  get coordinate_conversion(): CoordinateConversionEntity {
-    return (this._coordinate_conversion ??= new CoordinateConversionEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.coordinate_conversion` instead. */
+  // Entity access: `client.CoordinateConversion().list()` / `client.CoordinateConversion().load({ id })`.
   CoordinateConversion(data?: any) {
     const self = this
     return new CoordinateConversionEntity(self,data)

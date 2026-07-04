@@ -233,10 +233,10 @@ class Bng2latlongConverterSDK
 
     private $_coordinate_conversion = null;
 
-    // Idiomatic facade: $client->coordinate_conversion()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias CoordinateConversion() (PHP method
-    // names are case-insensitive).
-    public function coordinate_conversion($data = null)
+    // Canonical facade: $client->CoordinateConversion()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->coordinate_conversion()
+    // resolves here too.
+    public function CoordinateConversion($data = null)
     {
         require_once __DIR__ . '/entity/coordinate_conversion_entity.php';
         if ($data === null) {
