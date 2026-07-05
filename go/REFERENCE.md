@@ -97,11 +97,11 @@ coordinate_conversion := client.CoordinateConversion(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `easting` | ``$INTEGER`` | No |  |
-| `latitude` | ``$NUMBER`` | No |  |
-| `longitude` | ``$NUMBER`` | No |  |
-| `northing` | ``$INTEGER`` | No |  |
-| `status` | ``$STRING`` | No |  |
+| `easting` | `int` | No |  |
+| `latitude` | `float64` | No |  |
+| `longitude` | `float64` | No |  |
+| `northing` | `int` | No |  |
+| `status` | `string` | No |  |
 
 ### Operations
 
@@ -110,7 +110,7 @@ coordinate_conversion := client.CoordinateConversion(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.CoordinateConversion(nil).Load(map[string]any{"id": "coordinate_conversion_id"}, nil)
+result, err := client.CoordinateConversion(nil).Load(nil, nil)
 ```
 
 ### Common Methods

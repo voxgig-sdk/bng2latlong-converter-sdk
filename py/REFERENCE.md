@@ -8,7 +8,7 @@ Complete API reference for the Bng2latlongConverter Python SDK.
 ### Constructor
 
 ```python
-from bng2latlong-converter_sdk import Bng2latlongConverterSDK
+from bng2latlongconverter_sdk import Bng2latlongConverterSDK
 
 client = Bng2latlongConverterSDK(options)
 ```
@@ -87,11 +87,11 @@ coordinate_conversion = client.CoordinateConversion()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `easting` | ``$INTEGER`` | No |  |
-| `latitude` | ``$NUMBER`` | No |  |
-| `longitude` | ``$NUMBER`` | No |  |
-| `northing` | ``$INTEGER`` | No |  |
-| `status` | ``$STRING`` | No |  |
+| `easting` | `int` | No |  |
+| `latitude` | `float` | No |  |
+| `longitude` | `float` | No |  |
+| `northing` | `int` | No |  |
+| `status` | `str` | No |  |
 
 ### Operations
 
@@ -100,7 +100,7 @@ coordinate_conversion = client.CoordinateConversion()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.CoordinateConversion().load({"id": "coordinate_conversion_id"})
+result = client.CoordinateConversion().load()
 ```
 
 ### Common Methods

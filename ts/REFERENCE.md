@@ -116,11 +116,11 @@ const coordinate_conversion = client.CoordinateConversion()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `easting` | ``$INTEGER`` | No |  |
-| `latitude` | ``$NUMBER`` | No |  |
-| `longitude` | ``$NUMBER`` | No |  |
-| `northing` | ``$INTEGER`` | No |  |
-| `status` | ``$STRING`` | No |  |
+| `easting` | `number` | No |  |
+| `latitude` | `number` | No |  |
+| `longitude` | `number` | No |  |
+| `northing` | `number` | No |  |
+| `status` | `string` | No |  |
 
 ### Operations
 
@@ -129,7 +129,7 @@ const coordinate_conversion = client.CoordinateConversion()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.CoordinateConversion().load({ id: 'coordinate_conversion_id' })
+const result = await client.CoordinateConversion().load()
 ```
 
 ### Common Methods

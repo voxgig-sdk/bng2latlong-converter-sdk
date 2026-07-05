@@ -8,7 +8,7 @@ Complete API reference for the Bng2latlongConverter Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'bng2latlong-converter_sdk'
+require_relative 'Bng2latlongConverter_sdk'
 
 client = Bng2latlongConverterSDK.new(options)
 ```
@@ -93,11 +93,11 @@ coordinate_conversion = client.CoordinateConversion
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `easting` | ``$INTEGER`` | No |  |
-| `latitude` | ``$NUMBER`` | No |  |
-| `longitude` | ``$NUMBER`` | No |  |
-| `northing` | ``$INTEGER`` | No |  |
-| `status` | ``$STRING`` | No |  |
+| `easting` | `Integer` | No |  |
+| `latitude` | `Float` | No |  |
+| `longitude` | `Float` | No |  |
+| `northing` | `Integer` | No |  |
+| `status` | `String` | No |  |
 
 ### Operations
 
@@ -106,7 +106,7 @@ coordinate_conversion = client.CoordinateConversion
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.CoordinateConversion.load({ "id" => "coordinate_conversion_id" })
+result = client.CoordinateConversion.load()
 ```
 
 ### Common Methods

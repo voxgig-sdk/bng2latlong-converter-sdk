@@ -221,7 +221,7 @@ class Bng2latlongConverterSDK:
 
 
     def CoordinateConversion(self, data=None) -> "CoordinateConversionEntity":
-        """Entity factory: client.CoordinateConversion().list({}) / client.CoordinateConversion().load({"id": ...})."""
+        """Entity factory: client.CoordinateConversion().list() / client.CoordinateConversion().load({"id": ...})."""
         from entity.coordinate_conversion_entity import CoordinateConversionEntity
         return CoordinateConversionEntity(self, data)
 

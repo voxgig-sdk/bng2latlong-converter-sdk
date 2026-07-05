@@ -8,7 +8,7 @@ Complete API reference for the Bng2latlongConverter PHP SDK.
 ### Constructor
 
 ```php
-require_once __DIR__ . '/bng2latlong-converter_sdk.php';
+require_once __DIR__ . '/bng2latlongconverter_sdk.php';
 
 $client = new Bng2latlongConverterSDK($options);
 ```
@@ -45,11 +45,11 @@ $client = Bng2latlongConverterSDK::test();
 
 Create a new `CoordinateConversionEntity` instance. Pass `null` for no initial data.
 
-#### `optionsMap(): array`
+#### `options_map(): array`
 
 Return a deep copy of the current SDK options.
 
-#### `getUtility(): ProjectNameUtility`
+#### `get_utility(): Bng2latlongConverterUtility`
 
 Return a copy of the SDK utility object.
 
@@ -92,11 +92,11 @@ $coordinate_conversion = $client->CoordinateConversion();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `easting` | ``$INTEGER`` | No |  |
-| `latitude` | ``$NUMBER`` | No |  |
-| `longitude` | ``$NUMBER`` | No |  |
-| `northing` | ``$INTEGER`` | No |  |
-| `status` | ``$STRING`` | No |  |
+| `easting` | `int` | No |  |
+| `latitude` | `float` | No |  |
+| `longitude` | `float` | No |  |
+| `northing` | `int` | No |  |
+| `status` | `string` | No |  |
 
 ### Operations
 
@@ -105,24 +105,24 @@ $coordinate_conversion = $client->CoordinateConversion();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->CoordinateConversion()->load(["id" => "coordinate_conversion_id"]);
+$result = $client->CoordinateConversion()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -131,7 +131,7 @@ Set the entity match criteria.
 Create a new `CoordinateConversionEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 

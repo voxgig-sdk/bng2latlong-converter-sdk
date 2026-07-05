@@ -25,8 +25,11 @@ class Bng2latlongConverterEntityBase<D = any> {
   _client: Bng2latlongConverterSDK
   _utility: Utility
   _entopts: any
-  _data: any
-  _match: any
+  // `_data`/`_match` hold accreted partial state (they start `{}` and fill in
+  // as ops resolve), so they are `Partial<D>` — the full `D` is only asserted
+  // at the `data()` return boundary.
+  _data: Partial<D>
+  _match: Partial<D>
   _entctx: Context
 
 
