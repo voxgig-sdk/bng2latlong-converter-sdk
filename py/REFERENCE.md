@@ -100,7 +100,7 @@ coordinate_conversion = client.CoordinateConversion()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.CoordinateConversion().load()
+result = client.CoordinateConversion().load({"easting": 1, "northing": 1})
 ```
 
 ### Common Methods

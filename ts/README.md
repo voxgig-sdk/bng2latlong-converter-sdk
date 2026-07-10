@@ -35,11 +35,15 @@ const client = new Bng2latlongConverterSDK()
 
 ### 3. Load a coordinateconversion
 
+CoordinateConversion is nested under easting, so provide the `easting`.
 `load()` returns the entity directly and throws on failure:
 
 ```ts
 try {
-  const coordinateconversion = await client.CoordinateConversion().load()
+  const coordinateconversion = await client.CoordinateConversion().load({
+    easting: 1,
+    northing: 1,
+  })
   console.log(coordinateconversion)
 } catch (err) {
   console.error('load failed:', err)
@@ -322,7 +326,7 @@ Create an instance: `const coordinate_conversion = client.CoordinateConversion()
 #### Example: Load
 
 ```ts
-const coordinate_conversion = await client.CoordinateConversion().load()
+const coordinate_conversion = await client.CoordinateConversion().load({ easting: 1, northing: 1 })
 ```
 
 

@@ -32,10 +32,12 @@ client = Bng2latlongConverterSDK.new
 
 ### 3. Load a coordinateconversion
 
+CoordinateConversion is nested under easting, so provide the `easting`.
+
 ```ruby
 begin
   # load returns the bare CoordinateConversion record (raises on error).
-  coordinateconversion = client.CoordinateConversion.load()
+  coordinateconversion = client.CoordinateConversion.load({ "easting" => 1, "northing" => 1 })
   puts coordinateconversion
 rescue => err
   warn "load failed: #{err}"
@@ -273,7 +275,7 @@ Create an instance: `coordinate_conversion = client.CoordinateConversion`
 
 ```ruby
 # load returns the bare CoordinateConversion record (raises on error).
-coordinate_conversion = client.CoordinateConversion.load()
+coordinate_conversion = client.CoordinateConversion.load({ "easting" => 1, "northing" => 1 })
 ```
 
 

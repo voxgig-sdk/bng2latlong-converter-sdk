@@ -20,9 +20,9 @@ main: {
           url: "https://api.getthedata.com"
         }
       ]
+      summary: "This API converts OSGB36 easting and northing coordinates (British National Grid) into WGS84 latitude and longitude."
       title: "bng2latlong Converter"
       version: "1.0.0"
+      website: "https://getthedata.com"
     }
   }
-}
-

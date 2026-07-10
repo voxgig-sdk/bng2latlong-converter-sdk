@@ -103,7 +103,7 @@ local coordinate_conversion = client:CoordinateConversion(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:CoordinateConversion():load()
+local result, err = client:CoordinateConversion():load({ easting = 1, northing = 1 })
 ```
 
 ### Common Methods

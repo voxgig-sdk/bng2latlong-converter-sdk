@@ -38,11 +38,12 @@ client = Bng2latlongConverterSDK()
 
 ### 3. Load a coordinateconversion
 
+CoordinateConversion is nested under easting, so provide the `easting`.
 `load()` returns the bare record (a `dict`) and raises on error.
 
 ```python
 try:
-    coordinateconversion = client.CoordinateConversion().load()
+    coordinateconversion = client.CoordinateConversion().load({"easting": 1, "northing": 1})
     print(coordinateconversion)
 except Exception as err:
     print(f"load failed: {err}")
@@ -278,7 +279,7 @@ Create an instance: `coordinate_conversion = client.CoordinateConversion()`
 #### Example: Load
 
 ```python
-coordinate_conversion = client.CoordinateConversion().load()
+coordinate_conversion = client.CoordinateConversion().load({"easting": 1, "northing": 1})
 ```
 
 

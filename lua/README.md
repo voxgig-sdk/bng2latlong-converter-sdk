@@ -35,8 +35,10 @@ local client = sdk.new()
 
 ### 3. Load a coordinateconversion
 
+CoordinateConversion is nested under easting, so provide the `easting`.
+
 ```lua
-local coordinateconversion, err = client:CoordinateConversion():load()
+local coordinateconversion, err = client:CoordinateConversion():load({ easting = 1, northing = 1 })
 if err then error(err) end
 print(coordinateconversion)
 ```
@@ -263,7 +265,7 @@ Create an instance: `local coordinate_conversion = client:CoordinateConversion(n
 #### Example: Load
 
 ```lua
-local coordinate_conversion, err = client:CoordinateConversion():load()
+local coordinate_conversion, err = client:CoordinateConversion():load({ easting = 1, northing = 1 })
 ```
 
 

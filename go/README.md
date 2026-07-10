@@ -50,12 +50,12 @@ import (
 func main() {
     client := sdk.New()
 
-    // Load a single coordinateconversion — the value is the loaded record.
-    coordinateconversion, err := client.CoordinateConversion(nil).Load(nil, nil)
+    // Load a single coordinateConversion — the value is the loaded record.
+    coordinateConversion, err := client.CoordinateConversion(nil).Load(map[string]any{"easting": 1, "northing": 1}, nil)
     if err != nil {
         panic(err)
     }
-    fmt.Println(coordinateconversion)
+    fmt.Println(coordinateConversion)
 }
 ```
 
@@ -135,13 +135,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-coordinateconversion, err := client.CoordinateConversion(nil).Load(
+coordinateConversion, err := client.CoordinateConversion(nil).Load(
     nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(coordinateconversion) // the returned mock data
+fmt.Println(coordinateConversion) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -245,9 +245,9 @@ Check `err` first, then use the value directly (or the typed
 `...Typed` variants, which return the entity's model struct and a typed
 slice):
 
-    coordinateconversion, err := client.CoordinateConversion(nil).Load(nil, nil)
+    coordinateConversion, err := client.CoordinateConversion(nil).Load(nil, nil)
     if err != nil { /* handle */ }
-    // coordinateconversion is the returned record
+    // coordinateConversion is the returned record
 
 Only `Direct()` returns a response envelope — a `map[string]any` with
 `"ok"`, `"status"`, `"headers"`, and `"data"` keys.
@@ -275,7 +275,7 @@ API path: `/bng2latlong/{easting}/{northing}`
 
 ### CoordinateConversion
 
-Create an instance: `coordinate_conversion := client.CoordinateConversion(nil)`
+Create an instance: `coordinateConversion := client.CoordinateConversion(nil)`
 
 #### Operations
 
@@ -296,11 +296,11 @@ Create an instance: `coordinate_conversion := client.CoordinateConversion(nil)`
 #### Example: Load
 
 ```go
-coordinate_conversion, err := client.CoordinateConversion(nil).Load(nil, nil)
+coordinateConversion, err := client.CoordinateConversion(nil).Load(map[string]any{"easting": 1, "northing": 1}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(coordinate_conversion) // the loaded record
+fmt.Println(coordinateConversion) // the loaded record
 ```
 
 

@@ -33,10 +33,12 @@ $client = new Bng2latlongConverterSDK();
 
 ### 3. Load a coordinateconversion
 
+CoordinateConversion is nested under easting, so provide the `easting`.
+
 ```php
 try {
     // load() returns the bare CoordinateConversion record (throws on error).
-    $coordinateconversion = $client->CoordinateConversion()->load();
+    $coordinateconversion = $client->CoordinateConversion()->load(["easting" => 1, "northing" => 1]);
     print_r($coordinateconversion);
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
@@ -283,7 +285,7 @@ Create an instance: `$coordinate_conversion = $client->CoordinateConversion();`
 
 ```php
 // load() returns the bare CoordinateConversion record (throws on error).
-$coordinate_conversion = $client->CoordinateConversion()->load();
+$coordinate_conversion = $client->CoordinateConversion()->load(["easting" => 1, "northing" => 1]);
 ```
 
 

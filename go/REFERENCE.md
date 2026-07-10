@@ -90,7 +90,8 @@ same parameters as `Direct()`.
 ## CoordinateConversionEntity
 
 ```go
-coordinate_conversion := client.CoordinateConversion(nil)
+coordinateConversion := client.CoordinateConversion(nil)
+fmt.Println(coordinateConversion.GetName()) // "coordinate_conversion"
 ```
 
 ### Fields
@@ -110,7 +111,11 @@ coordinate_conversion := client.CoordinateConversion(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.CoordinateConversion(nil).Load(nil, nil)
+result, err := client.CoordinateConversion(nil).Load(map[string]any{"easting": 1, "northing": 1}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
