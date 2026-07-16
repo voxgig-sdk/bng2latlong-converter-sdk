@@ -27,7 +27,20 @@ func main() {
 }
 
 func run(args []string, in io.Reader, out, errOut io.Writer) int {
-	client := sdk.NewBng2latlongConverterSDK(nil)
+	// Configure from the environment: BNG2LATLONG_CONVERTER_APIKEY carries the API key and
+	// BNG2LATLONG_CONVERTER_BASE optionally overrides the API base URL (e.g. production).
+	// Both injectable by a secrets vault. Unset -> nil config defaults.
+	var opts map[string]any
+	if apikey := os.Getenv("BNG2LATLONG_CONVERTER_APIKEY"); apikey != "" {
+		opts = map[string]any{"apikey": apikey}
+	}
+	if base := os.Getenv("BNG2LATLONG_CONVERTER_BASE"); base != "" {
+		if opts == nil {
+			opts = map[string]any{}
+		}
+		opts["base"] = base
+	}
+	client := sdk.NewBng2latlongConverterSDK(opts)
 
 	r, err := eng.NewRegistry()
 	if err != nil {
