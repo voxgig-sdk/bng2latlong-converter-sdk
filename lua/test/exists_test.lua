@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- Bng2latlongConverter SDK exists test
 
 local sdk = require("bng2latlong-converter_sdk")
 

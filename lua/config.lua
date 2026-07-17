@@ -1,4 +1,4 @@
--- ProjectName SDK configuration
+-- Bng2latlongConverter SDK configuration
 
 local function make_config()
   return {
