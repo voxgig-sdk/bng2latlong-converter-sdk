@@ -26,8 +26,8 @@ import {
 describe('CoordinateConversionEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when BNG2LATLONGCONVERTER_TEST_LIVE=TRUE.
-  afterEach(liveDelay('BNG2LATLONGCONVERTER_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when BNG2LATLONG_CONVERTER_TEST_LIVE=TRUE.
+  afterEach(liveDelay('BNG2LATLONG_CONVERTER_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = Bng2latlongConverterSDK.test()
@@ -38,7 +38,7 @@ describe('CoordinateConversionEntity', async () => {
 
   test('basic', async (t) => {
 
-    const live = 'TRUE' === process.env.BNG_LATLONG_CONVERTER_TEST_LIVE
+    const live = 'TRUE' === process.env.BNG2LATLONG_CONVERTER_TEST_LIVE
     for (const op of ['load']) {
       if (maybeSkipControl(t, 'entityOp', 'coordinate_conversion.' + op, live)) return
     }
@@ -48,7 +48,7 @@ describe('CoordinateConversionEntity', async () => {
     // fixture (entity TestData.json). Those don't exist on the live API.
     // Skip live runs unless the user provided a real ENTID env override.
     if (setup.syntheticOnly) {
-      t.skip('live entity test uses synthetic IDs from fixture — set BNG_LATLONG_CONVERTER_TEST_COORDINATE_CONVERSION_ENTID JSON to run live')
+      t.skip('live entity test uses synthetic IDs from fixture — set BNG2LATLONG_CONVERTER_TEST_COORDINATE_CONVERSION_ENTID JSON to run live')
       return
     }
     const client = setup.client
@@ -104,18 +104,18 @@ function basicSetup(extra?: any) {
   // basic flow consumes synthetic IDs from the fixture file; without an
   // override those synthetic IDs reach the live API and 4xx. Surface this
   // to the test so it can skip rather than fail.
-  const idmapEnvVal = process.env['BNG_LATLONG_CONVERTER_TEST_COORDINATE_CONVERSION_ENTID']
+  const idmapEnvVal = process.env['BNG2LATLONG_CONVERTER_TEST_COORDINATE_CONVERSION_ENTID']
   const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{')
 
   const env = envOverride({
-    'BNG_LATLONG_CONVERTER_TEST_COORDINATE_CONVERSION_ENTID': idmap,
-    'BNG_LATLONG_CONVERTER_TEST_LIVE': 'FALSE',
-    'BNG_LATLONG_CONVERTER_TEST_EXPLAIN': 'FALSE',
+    'BNG2LATLONG_CONVERTER_TEST_COORDINATE_CONVERSION_ENTID': idmap,
+    'BNG2LATLONG_CONVERTER_TEST_LIVE': 'FALSE',
+    'BNG2LATLONG_CONVERTER_TEST_EXPLAIN': 'FALSE',
   })
 
-  idmap = env['BNG_LATLONG_CONVERTER_TEST_COORDINATE_CONVERSION_ENTID']
+  idmap = env['BNG2LATLONG_CONVERTER_TEST_COORDINATE_CONVERSION_ENTID']
 
-  const live = 'TRUE' === env.BNG_LATLONG_CONVERTER_TEST_LIVE
+  const live = 'TRUE' === env.BNG2LATLONG_CONVERTER_TEST_LIVE
 
   if (live) {
     client = new Bng2latlongConverterSDK(merge([
@@ -132,7 +132,7 @@ function basicSetup(extra?: any) {
     client,
     struct,
     data: entityData,
-    explain: 'TRUE' === env.BNG_LATLONG_CONVERTER_TEST_EXPLAIN,
+    explain: 'TRUE' === env.BNG2LATLONG_CONVERTER_TEST_EXPLAIN,
     live,
     syntheticOnly: live && !idmapOverridden,
     now: Date.now(),

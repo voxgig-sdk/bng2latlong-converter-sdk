@@ -33,7 +33,7 @@ class CoordinateConversionEntityTest extends TestCase
         // The basic flow consumes synthetic IDs from the fixture. In live mode
         // without an *_ENTID env override, those IDs hit the live API and 4xx.
         if (!empty($setup["synthetic_only"])) {
-            $this->markTestSkipped("live entity test uses synthetic IDs from fixture — set BNG_LATLONGCONVERTER_TEST_COORDINATE_CONVERSION_ENTID JSON to run live");
+            $this->markTestSkipped("live entity test uses synthetic IDs from fixture — set BNG2LATLONG_CONVERTER_TEST_COORDINATE_CONVERSION_ENTID JSON to run live");
             return;
         }
         $client = $setup["client"];
@@ -77,22 +77,22 @@ function coordinate_conversion_basic_setup($extra)
     // Detect ENTID env override before envOverride consumes it. When live
     // mode is on without a real override, the basic test runs against synthetic
     // IDs from the fixture and 4xx's. Surface this so the test can skip.
-    $entid_env_raw = getenv("BNG_LATLONGCONVERTER_TEST_COORDINATE_CONVERSION_ENTID");
+    $entid_env_raw = getenv("BNG2LATLONG_CONVERTER_TEST_COORDINATE_CONVERSION_ENTID");
     $idmap_overridden = $entid_env_raw !== false && str_starts_with(trim($entid_env_raw), "{");
 
     $env = Runner::env_override([
-        "BNG_LATLONGCONVERTER_TEST_COORDINATE_CONVERSION_ENTID" => $idmap,
-        "BNG_LATLONGCONVERTER_TEST_LIVE" => "FALSE",
-        "BNG_LATLONGCONVERTER_TEST_EXPLAIN" => "FALSE",
+        "BNG2LATLONG_CONVERTER_TEST_COORDINATE_CONVERSION_ENTID" => $idmap,
+        "BNG2LATLONG_CONVERTER_TEST_LIVE" => "FALSE",
+        "BNG2LATLONG_CONVERTER_TEST_EXPLAIN" => "FALSE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
-        $env["BNG_LATLONGCONVERTER_TEST_COORDINATE_CONVERSION_ENTID"]);
+        $env["BNG2LATLONG_CONVERTER_TEST_COORDINATE_CONVERSION_ENTID"]);
     if ($idmap_resolved === null) {
         $idmap_resolved = Helpers::to_map($idmap);
     }
 
-    if ($env["BNG_LATLONGCONVERTER_TEST_LIVE"] === "TRUE") {
+    if ($env["BNG2LATLONG_CONVERTER_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
             ],
@@ -101,13 +101,13 @@ function coordinate_conversion_basic_setup($extra)
         $client = new Bng2latlongConverterSDK(Helpers::to_map($merged_opts));
     }
 
-    $live = $env["BNG_LATLONGCONVERTER_TEST_LIVE"] === "TRUE";
+    $live = $env["BNG2LATLONG_CONVERTER_TEST_LIVE"] === "TRUE";
     return [
         "client" => $client,
         "data" => $entity_data,
         "idmap" => $idmap_resolved,
         "env" => $env,
-        "explain" => $env["BNG_LATLONGCONVERTER_TEST_EXPLAIN"] === "TRUE",
+        "explain" => $env["BNG2LATLONG_CONVERTER_TEST_EXPLAIN"] === "TRUE",
         "live" => $live,
         "synthetic_only" => $live && !$idmap_overridden,
         "now" => (int)(microtime(true) * 1000),

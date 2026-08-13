@@ -57,7 +57,7 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const coordinateconversion = await client.CoordinateConversion().load()
+  const coordinateconversion = await client.CoordinateConversion().load({ easting: 1, northing: 1 })
   console.log(coordinateconversion)
 } catch (err) {
   console.error('load failed:', err)
@@ -124,8 +124,9 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = Bng2latlongConverterSDK.test()
 
-const coordinateconversion = await client.CoordinateConversion().load()
-// coordinateconversion is a bare entity populated with mock response data
+const coordinateconversion = await client.CoordinateConversion().load({ easting: 1, northing: 1 })
+// coordinateconversion is the entity, populated with mock response data
+// — call coordinateconversion.data() for the record itself
 console.log(coordinateconversion)
 ```
 
@@ -144,7 +145,7 @@ Entity instances remember their last match and data:
 const entity = client.CoordinateConversion()
 
 // First call runs the operation and stores its result
-await entity.load()
+await entity.load({ easting: 1, northing: 1 })
 
 // Subsequent calls reuse the stored state
 const data = entity.data()
@@ -400,7 +401,7 @@ calls on the same instance can rely on this state.
 
 ```ts
 const coordinateconversion = client.CoordinateConversion()
-await coordinateconversion.load()
+await coordinateconversion.load({ easting: 1, northing: 1 })
 
 // coordinateconversion.data() now returns the coordinateconversion data from the last `load`
 // coordinateconversion.match() returns the last match criteria

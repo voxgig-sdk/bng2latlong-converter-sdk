@@ -92,6 +92,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/bng2latlong/{easting}/{northing}",
 								"parts": []any{
@@ -137,6 +138,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/bng2latlong/{easting}/{northing}/xml",
 								"parts": []any{
@@ -158,7 +160,6 @@ func MakeConfig() map[string]any {
 								"index$": 1,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{

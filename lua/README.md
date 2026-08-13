@@ -50,7 +50,7 @@ Entity operations return `(value, err)`. Check `err` before using
 the value:
 
 ```lua
-local coordinateconversion, err = client:CoordinateConversion():load()
+local coordinateconversion, err = client:CoordinateConversion():load({ easting = 1, northing = 1 })
 if err then error(err) end
 ```
 
@@ -108,7 +108,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:CoordinateConversion():load()
+local result, err = client:CoordinateConversion():load({ easting = 1, northing = 1 })
 -- result is the returned data; err is set on failure
 ```
 
@@ -346,7 +346,7 @@ stores the returned data and match criteria internally.
 
 ```lua
 local coordinateconversion = client:CoordinateConversion()
-coordinateconversion:load()
+coordinateconversion:load({ easting = 1, northing = 1 })
 
 -- coordinateconversion:data_get() now returns the coordinateconversion data from the last load
 -- coordinateconversion:match_get() returns the last match criteria

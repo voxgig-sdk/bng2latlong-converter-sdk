@@ -70,11 +70,11 @@ function coordinate_conversion_direct_setup(mockres)
   local calls = {}
 
   local env = runner.env_override({
-    ["BNG_LATLONGCONVERTER_TEST_COORDINATE_CONVERSION_ENTID"] = {},
-    ["BNG_LATLONGCONVERTER_TEST_LIVE"] = "FALSE",
+    ["BNG2LATLONG_CONVERTER_TEST_COORDINATE_CONVERSION_ENTID"] = {},
+    ["BNG2LATLONG_CONVERTER_TEST_LIVE"] = "FALSE",
   })
 
-  local live = env["BNG_LATLONGCONVERTER_TEST_LIVE"] == "TRUE"
+  local live = env["BNG2LATLONG_CONVERTER_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {

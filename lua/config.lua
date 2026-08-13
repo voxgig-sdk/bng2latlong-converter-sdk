@@ -92,6 +92,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/bng2latlong/{easting}/{northing}",
                 ["parts"] = {
@@ -137,6 +138,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/bng2latlong/{easting}/{northing}/xml",
                 ["parts"] = {

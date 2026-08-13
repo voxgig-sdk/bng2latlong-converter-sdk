@@ -23,6 +23,7 @@ require_once __DIR__ . '/MakeUrl.php';
 require_once __DIR__ . '/Param.php';
 require_once __DIR__ . '/PrepareAuth.php';
 require_once __DIR__ . '/PrepareBody.php';
+require_once __DIR__ . '/Graphql.php';
 require_once __DIR__ . '/PrepareHeaders.php';
 require_once __DIR__ . '/PrepareMethod.php';
 require_once __DIR__ . '/PrepareParams.php';
@@ -59,6 +60,8 @@ Bng2latlongConverterUtility::setRegistrar(function (Bng2latlongConverterUtility 
     $u->prepare_params = [Bng2latlongConverterPrepareParams::class, 'call'];
     $u->prepare_path = [Bng2latlongConverterPreparePath::class, 'call'];
     $u->prepare_query = [Bng2latlongConverterPrepareQuery::class, 'call'];
+    $u->graphql_body = [Bng2latlongConverterGraphql::class, 'body'];
+    $u->graphql_errors = [Bng2latlongConverterGraphql::class, 'errors'];
     $u->result_basic = [Bng2latlongConverterResultBasic::class, 'call'];
     $u->result_body = [Bng2latlongConverterResultBody::class, 'call'];
     $u->result_headers = [Bng2latlongConverterResultHeaders::class, 'call'];

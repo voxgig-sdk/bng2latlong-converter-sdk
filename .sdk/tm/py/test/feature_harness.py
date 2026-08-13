@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import Bng2latlongConverterControl
-from core.error import Bng2latlongConverterError
-from core.result import Bng2latlongConverterResult
-from core.spec import Bng2latlongConverterSpec
+from projectname_sdk.config import make_config
+from projectname_sdk.features import _make_feature
+from projectname_sdk.core.control import Bng2latlongConverterControl
+from projectname_sdk.core.error import Bng2latlongConverterError
+from projectname_sdk.core.result import Bng2latlongConverterResult
+from projectname_sdk.core.spec import Bng2latlongConverterSpec
 
 
 # True when this SDK was generated with the named feature.

@@ -29,7 +29,7 @@ describe("CoordinateConversionEntity", function()
     -- The basic flow consumes synthetic IDs from the fixture. In live mode
     -- without an *_ENTID env override, those IDs hit the live API and 4xx.
     if setup.synthetic_only then
-      pending("live entity test uses synthetic IDs from fixture — set BNG_LATLONGCONVERTER_TEST_COORDINATE_CONVERSION_ENTID JSON to run live")
+      pending("live entity test uses synthetic IDs from fixture — set BNG2LATLONG_CONVERTER_TEST_COORDINATE_CONVERSION_ENTID JSON to run live")
       return
     end
     local client = setup.client
@@ -84,22 +84,22 @@ function coordinate_conversion_basic_setup(extra)
   -- Detect ENTID env override before envOverride consumes it. When live
   -- mode is on without a real override, the basic test runs against synthetic
   -- IDs from the fixture and 4xx's. Surface this so the test can skip.
-  local entid_env_raw = os.getenv("BNG_LATLONGCONVERTER_TEST_COORDINATE_CONVERSION_ENTID")
+  local entid_env_raw = os.getenv("BNG2LATLONG_CONVERTER_TEST_COORDINATE_CONVERSION_ENTID")
   local idmap_overridden = entid_env_raw ~= nil and entid_env_raw:match("^%s*{") ~= nil
 
   local env = runner.env_override({
-    ["BNG_LATLONGCONVERTER_TEST_COORDINATE_CONVERSION_ENTID"] = idmap,
-    ["BNG_LATLONGCONVERTER_TEST_LIVE"] = "FALSE",
-    ["BNG_LATLONGCONVERTER_TEST_EXPLAIN"] = "FALSE",
+    ["BNG2LATLONG_CONVERTER_TEST_COORDINATE_CONVERSION_ENTID"] = idmap,
+    ["BNG2LATLONG_CONVERTER_TEST_LIVE"] = "FALSE",
+    ["BNG2LATLONG_CONVERTER_TEST_EXPLAIN"] = "FALSE",
   })
 
   local idmap_resolved = helpers.to_map(
-    env["BNG_LATLONGCONVERTER_TEST_COORDINATE_CONVERSION_ENTID"])
+    env["BNG2LATLONG_CONVERTER_TEST_COORDINATE_CONVERSION_ENTID"])
   if idmap_resolved == nil then
     idmap_resolved = helpers.to_map(idmap)
   end
 
-  if env["BNG_LATLONGCONVERTER_TEST_LIVE"] == "TRUE" then
+  if env["BNG2LATLONG_CONVERTER_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
       },
@@ -108,13 +108,13 @@ function coordinate_conversion_basic_setup(extra)
     client = sdk.new(helpers.to_map(merged_opts))
   end
 
-  local live = env["BNG_LATLONGCONVERTER_TEST_LIVE"] == "TRUE"
+  local live = env["BNG2LATLONG_CONVERTER_TEST_LIVE"] == "TRUE"
   return {
     client = client,
     data = entity_data,
     idmap = idmap_resolved,
     env = env,
-    explain = env["BNG_LATLONGCONVERTER_TEST_EXPLAIN"] == "TRUE",
+    explain = env["BNG2LATLONG_CONVERTER_TEST_EXPLAIN"] == "TRUE",
     live = live,
     synthetic_only = live and not idmap_overridden,
     now = os.time() * 1000,

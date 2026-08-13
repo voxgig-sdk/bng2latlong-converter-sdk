@@ -43,8 +43,8 @@ class Bng2latlongConverterTestRunner
 
     public static function env_override(array $m): array
     {
-        $live = self::getenv('BNG2LATLONGCONVERTER_TEST_LIVE');
-        $override = self::getenv('BNG2LATLONGCONVERTER_TEST_OVERRIDE');
+        $live = self::getenv('BNG2LATLONG_CONVERTER_TEST_LIVE');
+        $override = self::getenv('BNG2LATLONG_CONVERTER_TEST_OVERRIDE');
 
         if ($live === 'TRUE' || $override === 'TRUE') {
             foreach (array_keys($m) as $key) {
@@ -63,9 +63,9 @@ class Bng2latlongConverterTestRunner
             }
         }
 
-        $explain = self::getenv('BNG2LATLONGCONVERTER_TEST_EXPLAIN');
+        $explain = self::getenv('BNG2LATLONG_CONVERTER_TEST_EXPLAIN');
         if ($explain !== null && $explain !== '') {
-            $m['BNG2LATLONGCONVERTER_TEST_EXPLAIN'] = $explain;
+            $m['BNG2LATLONG_CONVERTER_TEST_EXPLAIN'] = $explain;
         }
 
         return $m;

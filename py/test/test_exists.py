@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# Bng2latlongConverter SDK exists test
 
 import pytest
 from bng2latlongconverter_sdk import Bng2latlongConverterSDK

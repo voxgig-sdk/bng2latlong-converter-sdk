@@ -23,8 +23,8 @@ module Bng2latlongConverterTestRunner
   end
 
   def self.env_override(m)
-    live = getenv("BNG2LATLONGCONVERTER_TEST_LIVE")
-    override = getenv("BNG2LATLONGCONVERTER_TEST_OVERRIDE")
+    live = getenv("BNG2LATLONG_CONVERTER_TEST_LIVE")
+    override = getenv("BNG2LATLONG_CONVERTER_TEST_OVERRIDE")
 
     if live == "TRUE" || override == "TRUE"
       m.each_key do |key|
@@ -44,8 +44,8 @@ module Bng2latlongConverterTestRunner
       end
     end
 
-    explain = getenv("BNG2LATLONGCONVERTER_TEST_EXPLAIN")
-    m["BNG2LATLONGCONVERTER_TEST_EXPLAIN"] = explain if explain && !explain.empty?
+    explain = getenv("BNG2LATLONG_CONVERTER_TEST_EXPLAIN")
+    m["BNG2LATLONG_CONVERTER_TEST_EXPLAIN"] = explain if explain && !explain.empty?
 
     m
   end

@@ -75,11 +75,11 @@ function coordinate_conversion_direct_setup($mockres)
     $calls = new \ArrayObject();
 
     $env = Runner::env_override([
-        "BNG_LATLONGCONVERTER_TEST_COORDINATE_CONVERSION_ENTID" => [],
-        "BNG_LATLONGCONVERTER_TEST_LIVE" => "FALSE",
+        "BNG2LATLONG_CONVERTER_TEST_COORDINATE_CONVERSION_ENTID" => [],
+        "BNG2LATLONG_CONVERTER_TEST_LIVE" => "FALSE",
     ]);
 
-    $live = $env["BNG_LATLONGCONVERTER_TEST_LIVE"] === "TRUE";
+    $live = $env["BNG2LATLONG_CONVERTER_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [

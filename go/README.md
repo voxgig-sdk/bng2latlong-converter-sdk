@@ -66,7 +66,7 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-coordinateconversion, err := client.CoordinateConversion(nil).Load(nil, nil)
+coordinateconversion, err := client.CoordinateConversion(nil).Load(map[string]any{"easting": 1, "northing": 1}, nil)
 if err != nil {
     // handle err
     return
@@ -136,7 +136,7 @@ Create a mock client for unit testing — no server required:
 client := sdk.Test()
 
 coordinateConversion, err := client.CoordinateConversion(nil).Load(
-    nil, nil,
+    map[string]any{"easting": 1, "northing": 1}, nil,
 )
 if err != nil {
     panic(err)
@@ -378,7 +378,7 @@ stores the returned data and match criteria internally.
 
 ```go
 coordinateconversion := client.CoordinateConversion(nil)
-coordinateconversion.Load(nil, nil)
+coordinateconversion.Load(map[string]any{"easting": 1, "northing": 1}, nil)
 
 // coordinateconversion.Data() now returns the coordinateconversion data from the last load
 // coordinateconversion.Match() returns the last match criteria

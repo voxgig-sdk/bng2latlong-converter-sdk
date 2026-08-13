@@ -37,7 +37,7 @@ CoordinateConversion is nested under easting, so provide the `easting`.
 
 ```php
 try {
-    // load() returns the bare CoordinateConversion record (throws on error).
+    // load() returns the ENTITY — call data_get() for the CoordinateConversion record (throws on error).
     $coordinateconversion = $client->CoordinateConversion()->load(["easting" => 1, "northing" => 1]);
     print_r($coordinateconversion);
 } catch (\Throwable $err) {
@@ -53,7 +53,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $coordinateconversion = $client->CoordinateConversion()->load();
+    $coordinateconversion = $client->CoordinateConversion()->load(["easting" => 1, "northing" => 1]);
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -125,8 +125,9 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = Bng2latlongConverterSDK::test();
 
-// Entity ops return the bare mock record (throws on error).
-$coordinateconversion = $client->CoordinateConversion()->load();
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
+$coordinateconversion = $client->CoordinateConversion()->load(["easting" => 1, "northing" => 1]);
 print_r($coordinateconversion);
 ```
 
@@ -224,7 +225,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -284,7 +285,7 @@ Create an instance: `$coordinate_conversion = $client->CoordinateConversion();`
 #### Example: Load
 
 ```php
-// load() returns the bare CoordinateConversion record (throws on error).
+// load() returns the ENTITY — call data_get() for the CoordinateConversion record (throws on error).
 $coordinate_conversion = $client->CoordinateConversion()->load(["easting" => 1, "northing" => 1]);
 ```
 
@@ -366,7 +367,7 @@ stores the returned data and match criteria internally.
 
 ```php
 $coordinateconversion = $client->CoordinateConversion();
-$coordinateconversion->load();
+$coordinateconversion->load(["easting" => 1, "northing" => 1]);
 
 // $coordinateconversion->data_get() now returns the coordinateconversion data from the last load
 // $coordinateconversion->match_get() returns the last match criteria

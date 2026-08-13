@@ -35,8 +35,8 @@ end
 
 
 function runner.env_override(m)
-  local live = runner.getenv("BNG2LATLONGCONVERTER_TEST_LIVE")
-  local override = runner.getenv("BNG2LATLONGCONVERTER_TEST_OVERRIDE")
+  local live = runner.getenv("BNG2LATLONG_CONVERTER_TEST_LIVE")
+  local override = runner.getenv("BNG2LATLONG_CONVERTER_TEST_OVERRIDE")
 
   if live == "TRUE" or override == "TRUE" then
     for key, _ in pairs(m) do
@@ -56,9 +56,9 @@ function runner.env_override(m)
     end
   end
 
-  local explain = runner.getenv("BNG2LATLONGCONVERTER_TEST_EXPLAIN")
+  local explain = runner.getenv("BNG2LATLONG_CONVERTER_TEST_EXPLAIN")
   if explain ~= nil and explain ~= "" then
-    m["BNG2LATLONGCONVERTER_TEST_EXPLAIN"] = explain
+    m["BNG2LATLONG_CONVERTER_TEST_EXPLAIN"] = explain
   end
 
   return m

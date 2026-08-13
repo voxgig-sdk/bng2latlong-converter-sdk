@@ -44,7 +44,7 @@ func TestCoordinateConversionEntity(t *testing.T) {
 		// The basic flow consumes synthetic IDs from the fixture. In live mode
 		// without an *_ENTID env override, those IDs hit the live API and 4xx.
 		if setup.syntheticOnly {
-			t.Skip("live entity test uses synthetic IDs from fixture — set BNG_LATLONGCONVERTER_TEST_COORDINATE_CONVERSION_ENTID JSON to run live")
+			t.Skip("live entity test uses synthetic IDs from fixture — set BNG2LATLONG_CONVERTER_TEST_COORDINATE_CONVERSION_ENTID JSON to run live")
 			return
 		}
 		client := setup.client
@@ -110,21 +110,21 @@ func coordinate_conversionBasicSetup(extra map[string]any) *entityTestSetup {
 	// Detect ENTID env override before envOverride consumes it. When live
 	// mode is on without a real override, the basic test runs against synthetic
 	// IDs from the fixture and 4xx's. Surface this so the test can skip.
-	entidEnvRaw := os.Getenv("BNG_LATLONGCONVERTER_TEST_COORDINATE_CONVERSION_ENTID")
+	entidEnvRaw := os.Getenv("BNG2LATLONG_CONVERTER_TEST_COORDINATE_CONVERSION_ENTID")
 	idmapOverridden := entidEnvRaw != "" && strings.HasPrefix(strings.TrimSpace(entidEnvRaw), "{")
 
 	env := envOverride(map[string]any{
-		"BNG_LATLONGCONVERTER_TEST_COORDINATE_CONVERSION_ENTID": idmap,
-		"BNG_LATLONGCONVERTER_TEST_LIVE":      "FALSE",
-		"BNG_LATLONGCONVERTER_TEST_EXPLAIN":   "FALSE",
+		"BNG2LATLONG_CONVERTER_TEST_COORDINATE_CONVERSION_ENTID": idmap,
+		"BNG2LATLONG_CONVERTER_TEST_LIVE":      "FALSE",
+		"BNG2LATLONG_CONVERTER_TEST_EXPLAIN":   "FALSE",
 	})
 
-	idmapResolved := core.ToMapAny(env["BNG_LATLONGCONVERTER_TEST_COORDINATE_CONVERSION_ENTID"])
+	idmapResolved := core.ToMapAny(env["BNG2LATLONG_CONVERTER_TEST_COORDINATE_CONVERSION_ENTID"])
 	if idmapResolved == nil {
 		idmapResolved = core.ToMapAny(idmap)
 	}
 
-	if env["BNG_LATLONGCONVERTER_TEST_LIVE"] == "TRUE" {
+	if env["BNG2LATLONG_CONVERTER_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
 			},
@@ -133,13 +133,13 @@ func coordinate_conversionBasicSetup(extra map[string]any) *entityTestSetup {
 		client = sdk.NewBng2latlongConverterSDK(core.ToMapAny(mergedOpts))
 	}
 
-	live := env["BNG_LATLONGCONVERTER_TEST_LIVE"] == "TRUE"
+	live := env["BNG2LATLONG_CONVERTER_TEST_LIVE"] == "TRUE"
 	return &entityTestSetup{
 		client:        client,
 		data:          entityData,
 		idmap:         idmapResolved,
 		env:           env,
-		explain:       env["BNG_LATLONGCONVERTER_TEST_EXPLAIN"] == "TRUE",
+		explain:       env["BNG2LATLONG_CONVERTER_TEST_EXPLAIN"] == "TRUE",
 		live:          live,
 		syntheticOnly: live && !idmapOverridden,
 		now:           time.Now().UnixMilli(),

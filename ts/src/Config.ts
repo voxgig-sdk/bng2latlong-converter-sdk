@@ -21,7 +21,7 @@ class Config {
 
 
   main = {
-    name: 'ProjectName',
+    name: 'Bng2latlongConverter',
   }
 
 
@@ -122,6 +122,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/bng2latlong/{easting}/{northing}",
               "parts": [
@@ -167,6 +168,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/bng2latlong/{easting}/{northing}/xml",
               "parts": [

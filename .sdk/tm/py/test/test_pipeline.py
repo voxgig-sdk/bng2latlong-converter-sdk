@@ -16,11 +16,11 @@
 import pytest
 
 from projectname_sdk import Bng2latlongConverterSDK
-from core.error import Bng2latlongConverterError
-from core.result import Bng2latlongConverterResult
-from core.response import Bng2latlongConverterResponse
-from core.spec import Bng2latlongConverterSpec
-from feature.base_feature import Bng2latlongConverterBaseFeature
+from projectname_sdk.core.error import Bng2latlongConverterError
+from projectname_sdk.core.result import Bng2latlongConverterResult
+from projectname_sdk.core.response import Bng2latlongConverterResponse
+from projectname_sdk.core.spec import Bng2latlongConverterSpec
+from projectname_sdk.feature.base_feature import Bng2latlongConverterBaseFeature
 
 
 def _client():

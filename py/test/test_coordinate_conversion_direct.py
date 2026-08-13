@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from bng2latlongconverter_sdk.utility.voxgig_struct import voxgig_struct as vs
 from bng2latlongconverter_sdk import Bng2latlongConverterSDK
-from core import helpers
+from bng2latlongconverter_sdk.core import helpers
 from test import runner
 
 
@@ -65,11 +65,11 @@ def _coordinate_conversion_direct_setup(mockres):
     calls = []
 
     env = runner.env_override({
-        "BNG_LATLONGCONVERTER_TEST_COORDINATE_CONVERSION_ENTID": {},
-        "BNG_LATLONGCONVERTER_TEST_LIVE": "FALSE",
+        "BNG2LATLONG_CONVERTER_TEST_COORDINATE_CONVERSION_ENTID": {},
+        "BNG2LATLONG_CONVERTER_TEST_LIVE": "FALSE",
     })
 
-    live = env.get("BNG_LATLONGCONVERTER_TEST_LIVE") == "TRUE"
+    live = env.get("BNG2LATLONG_CONVERTER_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {

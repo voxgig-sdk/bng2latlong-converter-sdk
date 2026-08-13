@@ -36,7 +36,7 @@ CoordinateConversion is nested under easting, so provide the `easting`.
 
 ```ruby
 begin
-  # load returns the bare CoordinateConversion record (raises on error).
+  # load returns the ENTITY — call data_get for the CoordinateConversion record (raises on error).
   coordinateconversion = client.CoordinateConversion.load({ "easting" => 1, "northing" => 1 })
   puts coordinateconversion
 rescue => err
@@ -51,7 +51,7 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  coordinateconversion = client.CoordinateConversion.load()
+  coordinateconversion = client.CoordinateConversion.load({ "easting" => 1, "northing" => 1 })
 rescue => err
   warn "load failed: #{err}"
 end
@@ -119,8 +119,9 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = Bng2latlongConverterSDK.test
 
-# Entity ops return the bare mock record (raises on error).
-coordinateconversion = client.CoordinateConversion.load()
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
+coordinateconversion = client.CoordinateConversion.load({ "easting" => 1, "northing" => 1 })
 puts coordinateconversion
 ```
 
@@ -274,7 +275,7 @@ Create an instance: `coordinate_conversion = client.CoordinateConversion`
 #### Example: Load
 
 ```ruby
-# load returns the bare CoordinateConversion record (raises on error).
+# load returns the ENTITY — call data_get for the CoordinateConversion record (raises on error).
 coordinate_conversion = client.CoordinateConversion.load({ "easting" => 1, "northing" => 1 })
 ```
 
@@ -356,7 +357,7 @@ stores the returned data and match criteria internally.
 
 ```ruby
 coordinateconversion = client.CoordinateConversion
-coordinateconversion.load()
+coordinateconversion.load({ "easting" => 1, "northing" => 1 })
 
 # coordinateconversion.data_get now returns the coordinateconversion data from the last load
 # coordinateconversion.match_get returns the last match criteria

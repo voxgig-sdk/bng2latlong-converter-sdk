@@ -23,7 +23,7 @@ support (`load`):
 
 ```ts
 const client = new Bng2latlongConverterSDK()
-const coordinateconversion = await client.CoordinateConversion().load()
+const coordinateconversion = await client.CoordinateConversion().load({ easting: 1, northing: 1 })
 ```
 
 Thinking in entities keeps the mental model small — for people and AI agents alike —
@@ -38,9 +38,18 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = Bng2latlongConverterSDK.test()
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = Bng2latlongConverterSDK.test({
+  entity: {
+    coordinate_conversion: {
+      test01: { id: 'test01' },
+    },
+  },
+})
 const coordinateconversion = await client.CoordinateConversion().load({ easting: 1, northing: 1 })
-// coordinateconversion is a bare CoordinateConversion populated with mock data
+// coordinateconversion is the CoordinateConversion entity, populated with mock data
+// — call coordinateconversion.data() for the record itself
 console.log(coordinateconversion)
 ```
 
@@ -186,7 +195,7 @@ require_once 'bng2latlongconverter_sdk.php';
 $client = new Bng2latlongConverterSDK();
 
 
-// Load a specific coordinateconversion (returns the bare record; throws on error)
+// Load a specific coordinateconversion (returns the ENTITY; call data_get() for the record; throws on error)
 $coordinateconversion = $client->CoordinateConversion()->load(["easting" => 1, "northing" => 1]);
 print_r($coordinateconversion);
 ```
@@ -217,7 +226,7 @@ require_relative "Bng2latlongConverter_sdk"
 client = Bng2latlongConverterSDK.new
 
 
-# Load a specific coordinateconversion (returns the bare record; raises on error)
+# Load a specific coordinateconversion (returns the ENTITY; call data_get for the record)
 coordinateconversion = client.CoordinateConversion.load({ "easting" => 1, "northing" => 1 })
 puts coordinateconversion
 ```
@@ -351,6 +360,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://www.getthedata.com/bng2latlong](https://www.getthedata.com/bng2latlong)
 

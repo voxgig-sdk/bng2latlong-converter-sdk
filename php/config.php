@@ -98,6 +98,7 @@ class Bng2latlongConverterConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/bng2latlong/{easting}/{northing}',
                   'parts' => [
@@ -143,6 +144,7 @@ class Bng2latlongConverterConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/bng2latlong/{easting}/{northing}/xml',
                   'parts' => [
