@@ -15,7 +15,7 @@ require_relative "../Bng2latlongConverter_sdk"
 module Bng2latlongConverterFeatureHarness
   # True when this SDK was generated with the named feature.
   def self.has_feature?(name)
-    f = Bng2latlongConverterConfig.make_config["feature"]
+    f = Bng2latlongConverterConfig.shared_config["feature"]
     f.is_a?(Hash) && !f[name].nil?
   end
 

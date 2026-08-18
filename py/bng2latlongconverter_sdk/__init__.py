@@ -23,8 +23,8 @@ class Bng2latlongConverterSDK:
         utility = Bng2latlongConverterUtility()
         self._utility = utility
 
-        from bng2latlongconverter_sdk.config import make_config
-        config = make_config()
+        from bng2latlongconverter_sdk.config import shared_config
+        config = shared_config()
 
         self._rootctx = utility.make_context({
             "client": self,

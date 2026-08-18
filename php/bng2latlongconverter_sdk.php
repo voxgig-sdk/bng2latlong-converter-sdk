@@ -40,7 +40,7 @@ class Bng2latlongConverterSDK
         $utility = new Bng2latlongConverterUtility();
         $this->_utility = $utility;
 
-        $config = Bng2latlongConverterConfig::make_config();
+        $config = Bng2latlongConverterConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

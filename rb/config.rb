@@ -1,6 +1,20 @@
 # Bng2latlongConverter SDK configuration
 
 module Bng2latlongConverterConfig
+  # Return the process-wide config, built once on first use. The SDK reads
+  # the config on every request and never writes to it, so one instance is
+  # shared by every client rather than rebuilt per client.
+  #
+  # The returned hash is shared: treat it as read-only. Callers that need to
+  # mutate should use make_config, which always returns a fresh copy.
+  def self.shared_config
+    @shared_config ||= make_config
+  end
+
+
+  # Build a fresh, fully materialised config hash. Every call rebuilds the
+  # whole structure, so prefer shared_config unless you need a private copy
+  # you intend to mutate.
   def self.make_config
     {
       "main" => {
@@ -26,39 +40,24 @@ module Bng2latlongConverterConfig
         "coordinate_conversion" => {
           "fields" => [
             {
-              "active" => true,
               "name" => "easting",
-              "req" => false,
               "type" => "`$INTEGER`",
-              "index$" => 0,
             },
             {
-              "active" => true,
               "name" => "latitude",
-              "req" => false,
               "type" => "`$NUMBER`",
-              "index$" => 1,
             },
             {
-              "active" => true,
               "name" => "longitude",
-              "req" => false,
               "type" => "`$NUMBER`",
-              "index$" => 2,
             },
             {
-              "active" => true,
               "name" => "northing",
-              "req" => false,
               "type" => "`$INTEGER`",
-              "index$" => 3,
             },
             {
-              "active" => true,
               "name" => "status",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 4,
             },
           ],
           "name" => "coordinate_conversion",
@@ -68,28 +67,23 @@ module Bng2latlongConverterConfig
               "name" => "load",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {
                     "params" => [
                       {
-                        "active" => true,
                         "example" => 529090,
                         "kind" => "param",
                         "name" => "easting",
                         "orig" => "easting",
                         "reqd" => true,
                         "type" => "`$INTEGER`",
-                        "index$" => 0,
                       },
                       {
-                        "active" => true,
                         "example" => 179645,
                         "kind" => "param",
                         "name" => "northing",
                         "orig" => "northing",
                         "reqd" => true,
                         "type" => "`$INTEGER`",
-                        "index$" => 1,
                       },
                     ],
                   },
@@ -111,31 +105,25 @@ module Bng2latlongConverterConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 0,
                 },
                 {
-                  "active" => true,
                   "args" => {
                     "params" => [
                       {
-                        "active" => true,
                         "example" => 529090,
                         "kind" => "param",
                         "name" => "easting",
                         "orig" => "easting",
                         "reqd" => true,
                         "type" => "`$INTEGER`",
-                        "index$" => 0,
                       },
                       {
-                        "active" => true,
                         "example" => 179645,
                         "kind" => "param",
                         "name" => "northing",
                         "orig" => "northing",
                         "reqd" => true,
                         "type" => "`$INTEGER`",
-                        "index$" => 1,
                       },
                     ],
                   },
@@ -158,10 +146,8 @@ module Bng2latlongConverterConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 1,
                 },
               ],
-              "key$" => "load",
             },
           },
           "relations" => {

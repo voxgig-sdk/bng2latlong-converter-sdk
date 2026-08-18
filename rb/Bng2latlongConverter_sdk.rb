@@ -28,7 +28,7 @@ class Bng2latlongConverterSDK
     utility = Bng2latlongConverterUtility.new
     @_utility = utility
 
-    config = Bng2latlongConverterConfig.make_config
+    config = Bng2latlongConverterConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,
