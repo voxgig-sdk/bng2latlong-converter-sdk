@@ -28,6 +28,9 @@ def make_config():
     return {
         "main": {
             "name": "Bng2latlongConverter",
+            "slug": "bng2latlong-converter",
+            "version": "0.0.1",
+            "target": "py",
         },
         "feature": {
             "test": {

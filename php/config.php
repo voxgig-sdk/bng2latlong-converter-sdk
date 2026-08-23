@@ -33,6 +33,9 @@ class Bng2latlongConverterConfig
         return [
             "main" => [
                 "name" => "Bng2latlongConverter",
+                "slug" => "bng2latlong-converter",
+                "version" => "0.0.1",
+                "target" => "php",
             ],
             "feature" => [
                 "test" => [
