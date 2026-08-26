@@ -42,6 +42,7 @@ class Bng2latlongConverterConfig
           'options' => [
             'active' => false,
           ],
+          'transport' => 'base',
         ],
             ],
             "options" => [
