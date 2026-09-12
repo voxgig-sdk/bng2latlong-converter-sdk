@@ -238,6 +238,7 @@ returns a result `Hash` with these keys:
 | Field | Description |
 | --- | --- |
 | `easting` |  |
+| `id` |  |
 | `latitude` |  |
 | `longitude` |  |
 | `northing` |  |
@@ -267,6 +268,7 @@ Create an instance: `coordinate_conversion = client.CoordinateConversion`
 | Field | Type | Description |
 | --- | --- | --- |
 | `easting` | `Integer` |  |
+| `id` | `String` |  |
 | `latitude` | `Float` |  |
 | `longitude` | `Float` |  |
 | `northing` | `Integer` |  |

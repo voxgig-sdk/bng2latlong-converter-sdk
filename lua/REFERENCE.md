@@ -91,6 +91,7 @@ local coordinate_conversion = client:CoordinateConversion(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `easting` | `number` | No |  |
+| `id` | `string` | No |  |
 | `latitude` | `number` | No |  |
 | `longitude` | `number` | No |  |
 | `northing` | `number` | No |  |

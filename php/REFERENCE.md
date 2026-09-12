@@ -93,6 +93,7 @@ $coordinate_conversion = $client->CoordinateConversion();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `easting` | `int` | No |  |
+| `id` | `string` | No |  |
 | `latitude` | `float` | No |  |
 | `longitude` | `float` | No |  |
 | `northing` | `int` | No |  |

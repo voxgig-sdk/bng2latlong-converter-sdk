@@ -2,39 +2,39 @@
   "existing": {
     "coordinate_conversion": {
       "COORDINATE_CONVERSION00": {
-        "easting": "s32",
-        "latitude": 51,
-        "longitude": 52,
-        "northing": "s35",
-        "status": "s36",
-        "id": "COORDINATE_CONVERSION00"
+        "easting": "s3c",
+        "id": "COORDINATE_CONVERSION00",
+        "latitude": 62,
+        "longitude": 63,
+        "northing": "s40",
+        "status": "s41"
       },
       "COORDINATE_CONVERSION01": {
-        "easting": "s64",
-        "latitude": 101,
-        "longitude": 102,
-        "northing": "s67",
-        "status": "s68",
-        "id": "COORDINATE_CONVERSION01"
+        "easting": "s78",
+        "id": "COORDINATE_CONVERSION01",
+        "latitude": 122,
+        "longitude": 123,
+        "northing": "s7c",
+        "status": "s7d"
       },
       "COORDINATE_CONVERSION02": {
-        "easting": "s96",
-        "latitude": 151,
-        "longitude": 152,
-        "northing": "s99",
-        "status": "s9a",
-        "id": "COORDINATE_CONVERSION02"
+        "easting": "sb4",
+        "id": "COORDINATE_CONVERSION02",
+        "latitude": 182,
+        "longitude": 183,
+        "northing": "sb8",
+        "status": "sb9"
       }
     }
   },
   "new": {
     "coordinate_conversion": {
       "coordinate_conversion_ref01": {
-        "easting": "sc8",
-        "latitude": 201,
-        "longitude": 202,
-        "northing": "scb",
-        "status": "scc"
+        "easting": "sf0",
+        "latitude": 242,
+        "longitude": 243,
+        "northing": "sf4",
+        "status": "sf5"
       }
     }
   }

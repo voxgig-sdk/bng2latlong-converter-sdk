@@ -149,7 +149,7 @@ await entity.load({ easting: 1, northing: 1 })
 
 // Subsequent calls reuse the stored state
 const data = entity.data()
-console.log(data)
+console.log(data.id)
 ```
 
 ### Add custom middleware
@@ -290,6 +290,7 @@ The `prepare()` method returns:
 | Field | Description |
 | --- | --- |
 | `easting` |  |
+| `id` |  |
 | `latitude` |  |
 | `longitude` |  |
 | `northing` |  |
@@ -319,6 +320,7 @@ Create an instance: `const coordinate_conversion = client.CoordinateConversion()
 | Field | Type | Description |
 | --- | --- | --- |
 | `easting` | `number` |  |
+| `id` | `string` |  |
 | `latitude` | `number` |  |
 | `longitude` | `number` |  |
 | `northing` | `number` |  |

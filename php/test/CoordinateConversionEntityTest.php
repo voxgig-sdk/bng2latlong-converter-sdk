@@ -48,9 +48,13 @@ class CoordinateConversionEntityTest extends TestCase
 
         // LOAD
         $coordinate_conversion_ref01_ent = $client->CoordinateConversion(null);
-        $coordinate_conversion_ref01_match_dt0 = [];
+        $coordinate_conversion_ref01_match_dt0 = [
+            "id" => $coordinate_conversion_ref01_data["id"],
+        ];
         $coordinate_conversion_ref01_data_dt0_loaded = $coordinate_conversion_ref01_ent->load($coordinate_conversion_ref01_match_dt0, null);
-        $this->assertNotNull($coordinate_conversion_ref01_data_dt0_loaded);
+        $coordinate_conversion_ref01_data_dt0_load_result = Helpers::to_map(is_object($coordinate_conversion_ref01_data_dt0_loaded) && method_exists($coordinate_conversion_ref01_data_dt0_loaded, 'data_get') ? $coordinate_conversion_ref01_data_dt0_loaded->data_get() : $coordinate_conversion_ref01_data_dt0_loaded);
+        $this->assertNotNull($coordinate_conversion_ref01_data_dt0_load_result);
+        $this->assertEquals($coordinate_conversion_ref01_data_dt0_load_result["id"], $coordinate_conversion_ref01_data["id"]);
 
     }
 }
@@ -94,9 +98,16 @@ function coordinate_conversion_basic_setup($extra)
 
     if ($env["BNG2LATLONG_CONVERTER_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
+            // FIRST, so the generated fields below win: sdk-test-control.json's
+            // test.client.options adds to the live client, it does not redirect it.
+            Runner::live_client_options(),
             [
             ],
-            $extra ?? [],
+            // ismap, not a plain "?? []" default: an empty PHP array is a
+            // LIST, and a non-map later entry REPLACES the accumulated map in
+            // merge - so the no-extras call discarded live_client_options()
+            // and the apikey/server map above it.
+            Vs::ismap($extra) ? $extra : new \stdClass(),
         ]);
         $client = new Bng2latlongConverterSDK(Helpers::to_map($merged_opts));
     }

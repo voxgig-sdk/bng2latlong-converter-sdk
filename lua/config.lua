@@ -36,6 +36,10 @@ local function make_config()
             ["type"] = "`$INTEGER`",
           },
           {
+            ["name"] = "id",
+            ["type"] = "`$STRING`",
+          },
+          {
             ["name"] = "latitude",
             ["type"] = "`$NUMBER`",
           },
@@ -51,6 +55,15 @@ local function make_config()
             ["name"] = "status",
             ["type"] = "`$STRING`",
           },
+        },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
+          ["parts"] = {
+            "easting",
+            "northing",
+          },
+          ["sep"] = "/",
         },
         ["name"] = "coordinate_conversion",
         ["op"] = {
@@ -82,10 +95,16 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/bng2latlong/{easting}/{northing}",
-                ["parts"] = {
-                  "bng2latlong",
-                  "{easting}",
-                  "{northing}",
+                ["segments"] = {
+                  {
+                    ["lit"] = "bng2latlong",
+                  },
+                  {
+                    ["var"] = "easting",
+                  },
+                  {
+                    ["var"] = "northing",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -96,6 +115,11 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "bng2latlong",
+                  "{easting}",
+                  "{northing}",
                 },
               },
               {
@@ -122,11 +146,19 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/bng2latlong/{easting}/{northing}/xml",
-                ["parts"] = {
-                  "bng2latlong",
-                  "{easting}",
-                  "{northing}",
-                  "xml",
+                ["segments"] = {
+                  {
+                    ["lit"] = "bng2latlong",
+                  },
+                  {
+                    ["var"] = "easting",
+                  },
+                  {
+                    ["var"] = "northing",
+                  },
+                  {
+                    ["lit"] = "xml",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -137,6 +169,12 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "bng2latlong",
+                  "{easting}",
+                  "{northing}",
+                  "xml",
                 },
               },
             },

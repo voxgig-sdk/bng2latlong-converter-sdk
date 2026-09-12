@@ -15,6 +15,7 @@ import (
 // CoordinateConversion is the typed data model for the coordinate_conversion entity.
 type CoordinateConversion struct {
 	Easting *int `json:"easting,omitempty"`
+	Id *string `json:"id,omitempty"`
 	Latitude *float64 `json:"latitude,omitempty"`
 	Longitude *float64 `json:"longitude,omitempty"`
 	Northing *int `json:"northing,omitempty"`

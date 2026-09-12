@@ -243,6 +243,7 @@ On error, `ok` is `False` and `err` contains the error value.
 | Field | Description |
 | --- | --- |
 | `easting` |  |
+| `id` |  |
 | `latitude` |  |
 | `longitude` |  |
 | `northing` |  |
@@ -272,6 +273,7 @@ Create an instance: `coordinate_conversion = client.CoordinateConversion()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `easting` | `int` |  |
+| `id` | `str` |  |
 | `latitude` | `float` |  |
 | `longitude` | `float` |  |
 | `northing` | `int` |  |

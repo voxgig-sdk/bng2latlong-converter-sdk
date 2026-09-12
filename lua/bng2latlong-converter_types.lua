@@ -8,6 +8,7 @@
 
 ---@class CoordinateConversion
 ---@field easting? number
+---@field id? string
 ---@field latitude? number
 ---@field longitude? number
 ---@field northing? number

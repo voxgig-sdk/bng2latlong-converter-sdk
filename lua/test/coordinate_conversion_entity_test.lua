@@ -44,10 +44,14 @@ describe("CoordinateConversionEntity", function()
 
     -- LOAD
     local coordinate_conversion_ref01_ent = client:CoordinateConversion(nil)
-    local coordinate_conversion_ref01_match_dt0 = {}
+    local coordinate_conversion_ref01_match_dt0 = {
+      id = coordinate_conversion_ref01_data["id"],
+    }
     local coordinate_conversion_ref01_data_dt0_loaded, err = coordinate_conversion_ref01_ent:load(coordinate_conversion_ref01_match_dt0, nil)
     assert.is_nil(err)
-    assert.is_not_nil(coordinate_conversion_ref01_data_dt0_loaded)
+    local coordinate_conversion_ref01_data_dt0_load_result = helpers.to_map(type(coordinate_conversion_ref01_data_dt0_loaded) == 'table' and coordinate_conversion_ref01_data_dt0_loaded.data_get and coordinate_conversion_ref01_data_dt0_loaded:data_get() or coordinate_conversion_ref01_data_dt0_loaded)
+    assert.is_not_nil(coordinate_conversion_ref01_data_dt0_load_result)
+    assert.are.equal(coordinate_conversion_ref01_data_dt0_load_result["id"], coordinate_conversion_ref01_data["id"])
 
   end)
 end)
@@ -101,6 +105,9 @@ function coordinate_conversion_basic_setup(extra)
 
   if env["BNG2LATLONG_CONVERTER_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
+      -- FIRST, so the generated fields below win: sdk-test-control.json's
+      -- test.client.options adds to the live client, it does not redirect it.
+      runner.live_client_options(),
       {
       },
       extra or {},

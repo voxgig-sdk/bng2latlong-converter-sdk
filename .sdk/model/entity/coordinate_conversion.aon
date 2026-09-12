@@ -11,6 +11,11 @@ main: kit: entity: coordinate_conversion: {
       type: "`$INTEGER`"
     }
     {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
       name: "latitude"
       req: false
       type: "`$NUMBER`"
@@ -31,6 +36,16 @@ main: kit: entity: coordinate_conversion: {
       type: "`$STRING`"
     }
   ]
+
+  id: {
+    field: "id"
+    name: "id"
+    parts: [
+      "easting"
+      "northing"
+    ]
+    sep: "/"
+  }
 
   name: "coordinate_conversion"
   op: {
@@ -60,10 +75,16 @@ main: kit: entity: coordinate_conversion: {
           }
           method: "GET"
           orig: "/bng2latlong/{easting}/{northing}"
-          parts: [
-            "bng2latlong"
-            "{easting}"
-            "{northing}"
+          segments: [
+            {
+              lit: "bng2latlong"
+            }
+            {
+              var: "easting"
+            }
+            {
+              var: "northing"
+            }
           ]
           select: {
             exist: [
@@ -99,11 +120,19 @@ main: kit: entity: coordinate_conversion: {
           }
           method: "GET"
           orig: "/bng2latlong/{easting}/{northing}/xml"
-          parts: [
-            "bng2latlong"
-            "{easting}"
-            "{northing}"
-            "xml"
+          segments: [
+            {
+              lit: "bng2latlong"
+            }
+            {
+              var: "easting"
+            }
+            {
+              var: "northing"
+            }
+            {
+              lit: "xml"
+            }
           ]
           select: {
             exist: [

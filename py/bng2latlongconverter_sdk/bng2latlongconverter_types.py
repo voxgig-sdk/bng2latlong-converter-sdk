@@ -18,6 +18,7 @@ from typing import TypedDict, Any
 
 class CoordinateConversion(TypedDict, total=False):
     easting: int
+    id: str
     latitude: float
     longitude: float
     northing: int

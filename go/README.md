@@ -259,6 +259,7 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 | Field | Description |
 | --- | --- |
 | `"easting"` |  |
+| `"id"` |  |
 | `"latitude"` |  |
 | `"longitude"` |  |
 | `"northing"` |  |
@@ -288,6 +289,7 @@ Create an instance: `coordinateConversion := client.CoordinateConversion(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `easting` | `int` |  |
+| `id` | `string` |  |
 | `latitude` | `float64` |  |
 | `longitude` | `float64` |  |
 | `northing` | `int` |  |

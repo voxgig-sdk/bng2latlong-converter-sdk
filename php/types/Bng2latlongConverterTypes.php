@@ -16,6 +16,7 @@ declare(strict_types=1);
 class CoordinateConversion
 {
     public ?int $easting = null;
+    public ?string $id = null;
     public ?float $latitude = null;
     public ?float $longitude = null;
     public ?int $northing = null;

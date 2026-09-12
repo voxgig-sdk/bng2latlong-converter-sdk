@@ -228,6 +228,7 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 | Field | Description |
 | --- | --- |
 | `easting` |  |
+| `id` |  |
 | `latitude` |  |
 | `longitude` |  |
 | `northing` |  |
@@ -257,6 +258,7 @@ Create an instance: `local coordinate_conversion = client:CoordinateConversion(n
 | Field | Type | Description |
 | --- | --- | --- |
 | `easting` | `number` |  |
+| `id` | `string` |  |
 | `latitude` | `number` |  |
 | `longitude` | `number` |  |
 | `northing` | `number` |  |

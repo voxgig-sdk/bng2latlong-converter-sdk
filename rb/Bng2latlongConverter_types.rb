@@ -13,6 +13,9 @@
 # @!attribute [rw] easting
 #   @return [Integer, nil]
 #
+# @!attribute [rw] id
+#   @return [String, nil]
+#
 # @!attribute [rw] latitude
 #   @return [Float, nil]
 #
@@ -26,6 +29,7 @@
 #   @return [String, nil]
 CoordinateConversion = Struct.new(
   :easting,
+  :id,
   :latitude,
   :longitude,
   :northing,

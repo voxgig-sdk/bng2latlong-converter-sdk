@@ -76,8 +76,10 @@ def coordinate_conversion_direct_setup(mockres)
   live = env["BNG2LATLONG_CONVERTER_TEST_LIVE"] == "TRUE"
 
   if live
-    merged_opts = {
-    }
+    # Merged so the generated fields win: sdk-test-control.json's
+    # test.client.options adds to the live client, it does not redirect it.
+    merged_opts = Runner.live_client_options.merge({
+    })
     client = Bng2latlongConverterSDK.new(merged_opts)
     return {
       client: client,

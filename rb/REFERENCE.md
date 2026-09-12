@@ -94,6 +94,7 @@ coordinate_conversion = client.CoordinateConversion
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `easting` | `Integer` | No |  |
+| `id` | `String` | No |  |
 | `latitude` | `Float` | No |  |
 | `longitude` | `Float` | No |  |
 | `northing` | `Integer` | No |  |

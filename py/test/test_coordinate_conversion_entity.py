@@ -48,9 +48,13 @@ class TestCoordinateConversionEntity:
 
         # LOAD
         coordinate_conversion_ref01_ent = client.CoordinateConversion(None)
-        coordinate_conversion_ref01_match_dt0 = {}
+        coordinate_conversion_ref01_match_dt0 = {
+            "id": coordinate_conversion_ref01_data["id"],
+        }
         coordinate_conversion_ref01_data_dt0_loaded = coordinate_conversion_ref01_ent.load(coordinate_conversion_ref01_match_dt0, None)
-        assert coordinate_conversion_ref01_data_dt0_loaded is not None
+        coordinate_conversion_ref01_data_dt0_load_result = helpers.to_map(runner.entity_data(coordinate_conversion_ref01_data_dt0_loaded))
+        assert coordinate_conversion_ref01_data_dt0_load_result is not None
+        assert coordinate_conversion_ref01_data_dt0_load_result["id"] == coordinate_conversion_ref01_data["id"]
 
 
 
@@ -99,6 +103,10 @@ def _coordinate_conversion_basic_setup(extra):
 
     if env.get("BNG2LATLONG_CONVERTER_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
+            # FIRST, so the generated fields below win: sdk-test-control.json's
+            # test.client.options adds to the live client, it does not
+            # redirect it.
+            runner.live_client_options(),
             {
             },
             extra or {},

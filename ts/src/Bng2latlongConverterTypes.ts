@@ -7,6 +7,7 @@
 
 export interface CoordinateConversion {
   easting?: number
+  id?: string
   latitude?: number
   longitude?: number
   northing?: number

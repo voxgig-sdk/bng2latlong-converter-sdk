@@ -50,7 +50,7 @@ func TestCoordinateConversionEntity(t *testing.T) {
 		client := setup.client
 
 		// Bootstrap entity data from existing test data (no create step in flow).
-		coordinateConversionRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath("existing.coordinate_conversion", setup.data)))
+		coordinateConversionRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath(setup.data, "existing.coordinate_conversion")))
 		var coordinateConversionRef01Data map[string]any
 		if len(coordinateConversionRef01DataRaw) > 0 {
 			coordinateConversionRef01Data = core.ToMapAny(coordinateConversionRef01DataRaw[0][1])
@@ -61,13 +61,19 @@ func TestCoordinateConversionEntity(t *testing.T) {
 
 		// LOAD
 		coordinateConversionRef01Ent := client.CoordinateConversion(nil)
-		coordinateConversionRef01MatchDt0 := map[string]any{}
+		coordinateConversionRef01MatchDt0 := map[string]any{
+			"id": coordinateConversionRef01Data["id"],
+		}
 		coordinateConversionRef01DataDt0Loaded, err := coordinateConversionRef01Ent.Load(coordinateConversionRef01MatchDt0, nil)
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		if coordinateConversionRef01DataDt0Loaded == nil {
-			t.Fatal("expected load result to be non-nil")
+		coordinateConversionRef01DataDt0LoadResult := core.ToMapAny(entityData(coordinateConversionRef01DataDt0Loaded))
+		if coordinateConversionRef01DataDt0LoadResult == nil {
+			t.Fatal("expected load result to be a map")
+		}
+		if coordinateConversionRef01DataDt0LoadResult["id"] != coordinateConversionRef01Data["id"] {
+			t.Fatal("expected load result id to match")
 		}
 
 	})
@@ -97,7 +103,7 @@ func coordinate_conversionBasicSetup(extra map[string]any) *entityTestSetup {
 	client := sdk.TestSDK(options, extra)
 
 	// Generate idmap via transform, matching TS pattern.
-	idmap := vs.Transform(
+	idmap, _ := vs.Transform(
 		[]any{"coordinate_conversion01", "coordinate_conversion02", "coordinate_conversion03", "bng2latlong01", "bng2latlong02", "bng2latlong03", "easting01"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
@@ -125,10 +131,22 @@ func coordinate_conversionBasicSetup(extra map[string]any) *entityTestSetup {
 	}
 
 	if env["BNG2LATLONG_CONVERTER_TEST_LIVE"] == "TRUE" {
+		// An empty map, not a nil one: Merge returns nil when its last entry
+		// is nil, and BasicSetup is normally called with no extras - so a
+		// bare nil silently discarded the apikey and server values below.
+		extraOpts := extra
+		if extraOpts == nil {
+			extraOpts = map[string]any{}
+		}
+
 		mergedOpts := vs.Merge([]any{
+			// liveClientOptions() FIRST, so the generated fields below win:
+			// sdk-test-control.json's test.client.options adds to the live
+			// client, it does not redirect it.
+			liveClientOptions(),
 			map[string]any{
 			},
-			extra,
+			extraOpts,
 		})
 		client = sdk.NewBng2latlongConverterSDK(core.ToMapAny(mergedOpts))
 	}

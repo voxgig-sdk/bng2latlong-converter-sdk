@@ -117,6 +117,7 @@ const coordinate_conversion = client.CoordinateConversion()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `easting` | `number` | No |  |
+| `id` | `string` | No |  |
 | `latitude` | `number` | No |  |
 | `longitude` | `number` | No |  |
 | `northing` | `number` | No |  |

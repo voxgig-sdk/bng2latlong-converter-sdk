@@ -99,6 +99,7 @@ fmt.Println(coordinateConversion.GetName()) // "coordinate_conversion"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `easting` | `int` | No |  |
+| `id` | `string` | No |  |
 | `latitude` | `float64` | No |  |
 | `longitude` | `float64` | No |  |
 | `northing` | `int` | No |  |

@@ -88,6 +88,7 @@ coordinate_conversion = client.CoordinateConversion()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `easting` | `int` | No |  |
+| `id` | `str` | No |  |
 | `latitude` | `float` | No |  |
 | `longitude` | `float` | No |  |
 | `northing` | `int` | No |  |

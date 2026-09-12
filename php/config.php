@@ -62,6 +62,10 @@ class Bng2latlongConverterConfig
               'type' => '`$INTEGER`',
             ],
             [
+              'name' => 'id',
+              'type' => '`$STRING`',
+            ],
+            [
               'name' => 'latitude',
               'type' => '`$NUMBER`',
             ],
@@ -77,6 +81,15 @@ class Bng2latlongConverterConfig
               'name' => 'status',
               'type' => '`$STRING`',
             ],
+          ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
+            'parts' => [
+              'easting',
+              'northing',
+            ],
+            'sep' => '/',
           ],
           'name' => 'coordinate_conversion',
           'op' => [
@@ -108,10 +121,16 @@ class Bng2latlongConverterConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/bng2latlong/{easting}/{northing}',
-                  'parts' => [
-                    'bng2latlong',
-                    '{easting}',
-                    '{northing}',
+                  'segments' => [
+                    [
+                      'lit' => 'bng2latlong',
+                    ],
+                    [
+                      'var' => 'easting',
+                    ],
+                    [
+                      'var' => 'northing',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -122,6 +141,11 @@ class Bng2latlongConverterConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'bng2latlong',
+                    '{easting}',
+                    '{northing}',
                   ],
                 ],
                 [
@@ -148,11 +172,19 @@ class Bng2latlongConverterConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/bng2latlong/{easting}/{northing}/xml',
-                  'parts' => [
-                    'bng2latlong',
-                    '{easting}',
-                    '{northing}',
-                    'xml',
+                  'segments' => [
+                    [
+                      'lit' => 'bng2latlong',
+                    ],
+                    [
+                      'var' => 'easting',
+                    ],
+                    [
+                      'var' => 'northing',
+                    ],
+                    [
+                      'lit' => 'xml',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -163,6 +195,12 @@ class Bng2latlongConverterConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'bng2latlong',
+                    '{easting}',
+                    '{northing}',
+                    'xml',
                   ],
                 ],
               ],
