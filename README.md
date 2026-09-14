@@ -105,7 +105,7 @@ local result, err = client:CoordinateConversion():load({ easting = 1, northing =
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/bng2latlong-converter` | publish pending — [install from git tag](https://github.com/voxgig-sdk/bng2latlong-converter-sdk/releases) |
+| TypeScript | `@voxgig-sdk/bng2latlong-converter-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/bng2latlong-converter-sdk/releases) |
 | Python | `voxgig-sdk-bng2latlong-converter` | publish pending — [install from git tag](https://github.com/voxgig-sdk/bng2latlong-converter-sdk/releases) |
 | PHP | `voxgig-sdk/bng2latlong-converter` | publish pending — [install from git tag](https://github.com/voxgig-sdk/bng2latlong-converter-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/bng2latlong-converter-sdk/go` | `go get github.com/voxgig-sdk/bng2latlong-converter-sdk/go@latest` |
@@ -119,7 +119,7 @@ local result, err = client:CoordinateConversion():load({ easting = 1, northing =
 ### TypeScript
 
 ```ts
-import { Bng2latlongConverterSDK } from '@voxgig-sdk/bng2latlong-converter'
+import { Bng2latlongConverterSDK } from '@voxgig-sdk/bng2latlong-converter-sdk'
 
 const client = new Bng2latlongConverterSDK()
 

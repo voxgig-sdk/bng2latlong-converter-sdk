@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { Bng2latlongConverterSDK } from '@voxgig-sdk/bng2latlong-converter'
+import { Bng2latlongConverterSDK } from '@voxgig-sdk/bng2latlong-converter-sdk'
 
 const client = new Bng2latlongConverterSDK()
 ```
@@ -415,7 +415,7 @@ bng2latlong-converter/
 Import the SDK from the package root:
 
 ```ts
-import { Bng2latlongConverterSDK } from '@voxgig-sdk/bng2latlong-converter'
+import { Bng2latlongConverterSDK } from '@voxgig-sdk/bng2latlong-converter-sdk'
 ```
 
 ### Entity state
