@@ -4,7 +4,10 @@ declare(strict_types=1);
 // Bng2latlongConverter SDK feature factory
 
 require_once __DIR__ . '/feature/BaseFeature.php';
+require_once __DIR__ . '/feature/RatelimitFeature.php';
+require_once __DIR__ . '/feature/RetryFeature.php';
 require_once __DIR__ . '/feature/TestFeature.php';
+require_once __DIR__ . '/feature/TimeoutFeature.php';
 
 
 class Bng2latlongConverterFeatures
@@ -14,8 +17,14 @@ class Bng2latlongConverterFeatures
         switch ($name) {
             case "base":
                 return new Bng2latlongConverterBaseFeature();
+            case "ratelimit":
+                return new Bng2latlongConverterRatelimitFeature();
+            case "retry":
+                return new Bng2latlongConverterRetryFeature();
             case "test":
                 return new Bng2latlongConverterTestFeature();
+            case "timeout":
+                return new Bng2latlongConverterTimeoutFeature();
             default:
                 return new Bng2latlongConverterBaseFeature();
         }
@@ -31,7 +40,10 @@ class Bng2latlongConverterFeatures
     {
         switch ($name) {
             case "base":
+            case "ratelimit":
+            case "retry":
             case "test":
+            case "timeout":
                 return true;
             default:
                 return false;

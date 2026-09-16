@@ -2,27 +2,27 @@
   "existing": {
     "coordinate_conversion": {
       "COORDINATE_CONVERSION00": {
-        "easting": "s3c",
+        "easting": 60,
         "id": "COORDINATE_CONVERSION00",
         "latitude": 62,
         "longitude": 63,
-        "northing": "s40",
+        "northing": 64,
         "status": "s41"
       },
       "COORDINATE_CONVERSION01": {
-        "easting": "s78",
+        "easting": 120,
         "id": "COORDINATE_CONVERSION01",
         "latitude": 122,
         "longitude": 123,
-        "northing": "s7c",
+        "northing": 124,
         "status": "s7d"
       },
       "COORDINATE_CONVERSION02": {
-        "easting": "sb4",
+        "easting": 180,
         "id": "COORDINATE_CONVERSION02",
         "latitude": 182,
         "longitude": 183,
-        "northing": "sb8",
+        "northing": 184,
         "status": "sb9"
       }
     }
@@ -30,11 +30,252 @@
   "new": {
     "coordinate_conversion": {
       "coordinate_conversion_ref01": {
-        "easting": "sf0",
+        "easting": 240,
         "latitude": 242,
         "longitude": 243,
-        "northing": "sf4",
+        "northing": 244,
         "status": "sf5"
+      }
+    }
+  },
+  "requests": {
+    "GET /bng2latlong/{easting}/{northing}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "convertBngToLatLongJson",
+        "parameters": [
+          {
+            "description": "The easting coordinate in OSGB36 format (British National Grid). Must be a positive integer within valid range.",
+            "in": "path",
+            "name": "easting",
+            "required": true,
+            "schema": {
+              "example": 529090,
+              "minimum": 0,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "The northing coordinate in OSGB36 format (British National Grid). Must be a positive integer within valid range.",
+            "in": "path",
+            "name": "northing",
+            "required": true,
+            "schema": {
+              "example": 179645,
+              "minimum": 0,
+              "type": "integer"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "error": {
+                    "summary": "Invalid coordinates",
+                    "value": {
+                      "error": "Both <easting> and <northing> must be provided, must be positive integers, and must be within range. Where provided, <format> must be \"xml\" or \"json\".",
+                      "status": "error"
+                    }
+                  },
+                  "success": {
+                    "summary": "Successful conversion",
+                    "value": {
+                      "easting": 326897,
+                      "latitude": 55.95271,
+                      "longitude": -3.17227,
+                      "northing": 673919,
+                      "status": "ok"
+                    }
+                  }
+                },
+                "schema": {
+                  "oneOf": [
+                    {
+                      "properties": {
+                        "easting": {
+                          "description": "The easting provided to the API in the request",
+                          "type": "integer"
+                        },
+                        "latitude": {
+                          "description": "The latitude of the converted coordinates in WGS84 format",
+                          "format": "double",
+                          "type": "number"
+                        },
+                        "longitude": {
+                          "description": "The longitude of the converted coordinates in WGS84 format",
+                          "format": "double",
+                          "type": "number"
+                        },
+                        "northing": {
+                          "description": "The northing provided to the API in the request",
+                          "type": "integer"
+                        },
+                        "status": {
+                          "description": "Status of the API response",
+                          "enum": [
+                            "ok"
+                          ],
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "status",
+                        "easting",
+                        "northing",
+                        "latitude",
+                        "longitude"
+                      ],
+                      "type": "object"
+                    },
+                    {
+                      "properties": {
+                        "error": {
+                          "description": "Error message describing what went wrong",
+                          "type": "string"
+                        },
+                        "status": {
+                          "description": "Status of the API response",
+                          "enum": [
+                            "error"
+                          ],
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "status",
+                        "error"
+                      ],
+                      "type": "object"
+                    }
+                  ]
+                }
+              }
+            },
+            "description": "Successful coordinate conversion"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /bng2latlong/{easting}/{northing}/xml": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "convertBngToLatLongXml",
+        "parameters": [
+          {
+            "description": "The easting coordinate in OSGB36 format (British National Grid). Must be a positive integer within valid range.",
+            "in": "path",
+            "name": "easting",
+            "required": true,
+            "schema": {
+              "example": 529090,
+              "minimum": 0,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "The northing coordinate in OSGB36 format (British National Grid). Must be a positive integer within valid range.",
+            "in": "path",
+            "name": "northing",
+            "required": true,
+            "schema": {
+              "example": 179645,
+              "minimum": 0,
+              "type": "integer"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/xml": {
+                "examples": {
+                  "error": {
+                    "summary": "Invalid coordinates",
+                    "value": "<?xml version=\"1.0\" ?>\n<result>\n  <status>error</status>\n  <error>Both &lt;easting&gt; and &lt;northing&gt; must be provided, must be positive integers, and must be within range. Where provided, &lt;format&gt; must be \"xml\" or \"json\".</error>\n</result>"
+                  },
+                  "success": {
+                    "summary": "Successful conversion",
+                    "value": "<?xml version=\"1.0\" ?>\n<result>\n  <status>ok</status>\n  <easting>326897</easting>\n  <northing>673919</northing>\n  <latitude>55.95271</latitude>\n  <longitude>-3.17227</longitude>\n</result>"
+                  }
+                },
+                "schema": {
+                  "oneOf": [
+                    {
+                      "properties": {
+                        "easting": {
+                          "description": "The easting provided to the API in the request",
+                          "type": "integer"
+                        },
+                        "latitude": {
+                          "description": "The latitude of the converted coordinates in WGS84 format",
+                          "format": "double",
+                          "type": "number"
+                        },
+                        "longitude": {
+                          "description": "The longitude of the converted coordinates in WGS84 format",
+                          "format": "double",
+                          "type": "number"
+                        },
+                        "northing": {
+                          "description": "The northing provided to the API in the request",
+                          "type": "integer"
+                        },
+                        "status": {
+                          "description": "Status of the API response",
+                          "enum": [
+                            "ok"
+                          ],
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "status",
+                        "easting",
+                        "northing",
+                        "latitude",
+                        "longitude"
+                      ],
+                      "type": "object",
+                      "xml": {
+                        "name": "result"
+                      }
+                    },
+                    {
+                      "properties": {
+                        "error": {
+                          "description": "Error message describing what went wrong",
+                          "type": "string"
+                        },
+                        "status": {
+                          "description": "Status of the API response",
+                          "enum": [
+                            "error"
+                          ],
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "status",
+                        "error"
+                      ],
+                      "type": "object",
+                      "xml": {
+                        "name": "result"
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+            "description": "Successful coordinate conversion"
+          }
+        },
+        "securitySource": "unspecified"
       }
     }
   }
