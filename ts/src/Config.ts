@@ -127,9 +127,9 @@ class Config {
 
     entity: {
       
-      coordinate_conversion: {
-      },
-
+        coordinate_conversion: {
+        },
+  
     }
   }
 

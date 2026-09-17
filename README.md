@@ -105,12 +105,12 @@ local result, err = client:CoordinateConversion():load({ easting = 1, northing =
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/bng2latlong-converter-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/bng2latlong-converter-sdk/releases) |
-| Python | `voxgig-sdk-bng2latlong-converter` | publish pending — [install from git tag](https://github.com/voxgig-sdk/bng2latlong-converter-sdk/releases) |
-| PHP | `voxgig-sdk/bng2latlong-converter` | publish pending — [install from git tag](https://github.com/voxgig-sdk/bng2latlong-converter-sdk/releases) |
+| TypeScript | `@voxgig-sdk/bng2latlong-converter-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/bng2latlong-converter-sdk/tags) |
+| Python | `voxgig-sdk-bng2latlong-converter` | publish pending — [install from git tag](https://github.com/voxgig-sdk/bng2latlong-converter-sdk/tags) |
+| PHP | `voxgig-sdk/bng2latlong-converter` | publish pending — [install from git tag](https://github.com/voxgig-sdk/bng2latlong-converter-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/bng2latlong-converter-sdk/go` | `go get github.com/voxgig-sdk/bng2latlong-converter-sdk/go@latest` |
-| Ruby | `voxgig-sdk-bng2latlong-converter` | publish pending — [install from git tag](https://github.com/voxgig-sdk/bng2latlong-converter-sdk/releases) |
-| Lua | `voxgig-sdk-bng2latlong-converter` | publish pending — [install from git tag](https://github.com/voxgig-sdk/bng2latlong-converter-sdk/releases) |
+| Ruby | `voxgig-sdk-bng2latlong-converter` | publish pending — [install from git tag](https://github.com/voxgig-sdk/bng2latlong-converter-sdk/tags) |
+| Lua | `voxgig-sdk-bng2latlong-converter` | publish pending — [install from git tag](https://github.com/voxgig-sdk/bng2latlong-converter-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/bng2latlong-converter-sdk/go-cli` | `go install github.com/voxgig-sdk/bng2latlong-converter-sdk/go-cli/cmd/bng2latlong-converter@latest` |
 | Go MCP server | `github.com/voxgig-sdk/bng2latlong-converter-sdk/go-mcp` | `go get github.com/voxgig-sdk/bng2latlong-converter-sdk/go-mcp@latest` |
 
